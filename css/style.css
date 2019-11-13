@@ -11,7 +11,8 @@ html{
 body{
   margin: 0;
   font-weight: 200;
-  background-color: #F8D848
+  /* background-color: #F8D848 */
+  background-color: #c9d99e
 }
 
 ul{
@@ -233,112 +234,91 @@ li{
 }
 
 /* 무민 임시 출력 */
-form {
+.moomin-svg form {
   width: 320px;
-  padding: 20px 25px;
+  /* padding: 20px 25px; */
   margin: 20px auto;
   /* background: #f8d348; */
   display: flex;
   flex-direction: column;
+  position: relative;
 }
-​
-svg {
-  width: 70%;
+.moomin-svg svg {
+  width: 100%;
   border-radius: 50%;
   background: #fff;
   margin-bottom: 40px;
   align-self: center;
   transform-style: preserve-3d;
 }
-​
-input {
-  font-size: 16px;
-  border: 0;
-  border-radius: 5px;
-  outline: 0;
-  padding: 10px 15px;
-  margin-top: 15px;
-}
-​
-@keyframes lookaway-up {
-  from {
-      transform: rotate3d(.2, 0, -.01, 20deg);
+
+@keyframes blink {
+  0%, 100% {
+    transform: scale(1,0.1)
   }
-​
-  to {
-      transform: rotate3d(.2, -.05, -.01, 20deg);
+  5%, 95% {
+    transform: scale(1,1)
   }
 }
-​
-@keyframes lookaway-down {
-  0% {
-      transform: rotate3d(-.2, 0, -.01, 20deg);
-  }
-​
-  100% {
-      transform: rotate3d(-.2, -.05, .01, 20deg);
-  }
+
+.vision .vision-left,.vision-right {
+  position: absolute;
+  width: 80px;
+  height: 160px;
+  transform: scale(0.8);
 }
-​
-.eye {
-  transform: scale(0.6) translate(33px, 17px) ;
+
+.vision-left {
+  top: 64px;
+  left: 106px;
 }
-​
-.ears {
-  transform-origin: 50% 50% 5px;
+
+.vision-right {
+  top: 71px;
+  left: 152px;
 }
-​
-.eyehair {
+
+.eyes {
+  top: 50px;
+/*   transform: rotate(5deg); */
+  height: 72px;
+  width: 36px;
+  position: absolute;
+  animation: blink 3s infinite;
 }
-.eyehair:hover{
-  /* transform: translateY(-5px); */
-  transform: skewY(-10deg);
+
+.sclera {
+  position: relative;
+  width: 36px;
+  height: 72px;
+  overflow: hidden;
+  background: #fff;
+  border-top-left-radius: 18px 36px;
+  border-top-right-radius: 18px 36px;
+  border-bottom-right-radius: 18px 36px;
+  border-bottom-left-radius: 18px 36px;
+  animation: blink 3s infinite;
 }
-​
-.eyehair {
-  stroke-dasharray:1400;
-  -webkit-animation: draw 4s ease-in;
+
+.sclera:after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 3px solid #000;
+  border-top-left-radius: 18px 36px;
+  border-top-right-radius: 18px 36px;
+  border-bottom-right-radius: 18px 36px;
+  border-bottom-left-radius: 18px 36px;
+  animation: blink 3s infinite;
 }
-​
-.muzzle {
-  transform-origin: 50% 50% -44px;
+
+.iris {
+  position: absolute;
+  transform: translate(-23px, -7px);
+  width: 50px;
+  height: 60px;
+  border: 1px solid #000;
+  border-radius: 70%;
+  background-color: #000;
 }
-​
-.ears, .eyes, .muzzle {
-  transition: transform .5s;
-}
-​
-.focused {
-  transition: transform .1s;
-}
-​
-.look-away .ears,
-.look-away .eyes,
-.look-away .muzzle {
-  transition-duration: .3s;
-  animation: 3s infinite alternate;
-}
-​
-.look-away.up .ears,
-.look-away.up .eyes,
-.look-away.up .muzzle {
-  transform: rotate3d(.2, 0, 0, 20deg) !important;
-}
-​
-.look-away.down .ears,
-.look-away.down .eyes,
-.look-away.down .muzzle {
-  transform: rotate3d(-.2, 0, 0, 20deg) !important;
-}
-​
-.look-away.playing.up .ears,
-.look-away.playing.up .eyes,
-.look-away.playing.up .muzzle {
-  animation-name: lookaway-up;
-}
-​
-.look-away.playing.down .ears,
-.look-away.playing.down .eyes,
-.look-away.playing.down .muzzle {
-  animation-name: lookaway-down;
-}
+
