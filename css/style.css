@@ -11,6 +11,7 @@ html{
 body{
   margin: 0;
   font-weight: 200;
+  background-color: #F8D848
 }
 
 ul{
@@ -29,10 +30,9 @@ li{
 
 .container{
   width: 1200px;
-  background-color: #F8D848;
-  margin: 30px auto;
+  margin: 0 auto;
   padding: 30px 80px;
-  box-shadow: 0px 5px 10px #aaa;
+  /* box-shadow: 0px 5px 10px #aaa; */
 }
 
 /* 헤더 */
@@ -48,7 +48,7 @@ li{
 }
 
 .input-github {
-  width: 630px;
+  width: 750px;
   height: 50px;
   opacity: 0.8;
   border-radius: 6px;
@@ -75,7 +75,7 @@ li{
   display: flex;
   justify-content: space-between;
   width: 500px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .commit-count-heading{
