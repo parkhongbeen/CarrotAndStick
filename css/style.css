@@ -233,6 +233,14 @@ li{
   padding: 0;
 }
 
+.input-github-error::placeholder { color: #ff5454; }
+.input-github-sucess::placeholder { color: black; }
+.input-github-sucess {
+  outline:none;
+  color : transparent;
+  text-shadow : 0 0 0 #000;
+ }
+
 /* 무민 임시 출력 */
 .moomin-svg form {
   width: 320px;
@@ -322,4 +330,5 @@ li{
   border-radius: 70%;
   background-color: #000;
 }
+
 
