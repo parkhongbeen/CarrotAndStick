@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Carrot and Stick</title>
   <link rel="stylesheet" href="/css/style.css">
+  <script defer src="js/index.js"></script>
   <script defer src="./js/changeFace.js"></script>
 </head>
 
@@ -17,16 +18,27 @@
       <input type="text" class="input-github" placeholder="Enter your GITHUB URL!" autofocus>
     </header>
 
+    <div class="popup">
+      <em class="popup-daily-em">일일 목표 커밋수를 입력해주세요!</em>
+      <p class="popup-daily-p">입력하신 목표 커밋 수와 입력하신 URL의 커밋 수에 따라 무민이 당근 or 채찍을 드려요.</p>
+      <input type="number" class="popup-daily-commit" placeholder="1~999 사이의 숫자를 입력해주세요.">
+      <button class="btn-ok">OK</button>
+      <p class="warning-text"></p>
+      <button class="btn-close">X</button>
+    </div>
+    <div class="overlay"></div>
+
     <div class="commit-todolist">
       <section class="commit-count">
         <h2 class="commit-count-heading">YOUR COMMIT</h2>
         <div class="count-now count-container">
           <span class="count-text">현재 커밋수</span>
+          <span class="refresh"><img src="/images/refresh.png" alt="새로고침"></span>
           <span class="count-now-number count-number">1</span>
         </div>
-        <div class="count-week count-container">
+        <div class="count-goal count-container">
           <span class="count-text achieve">목표 커밋수</span>
-          <span class="count-week-number count-number">3</span>
+          <span class="count-goal-number count-number">3</span>
         </div>
       </section>
 
@@ -82,7 +94,7 @@
 
     <section class="moomin-status">
       <h2 class="moomin-status-heading">Moomin say</h2>
-      <em class="carrot-stick">"Welcome! Enter your GITGUB URL."</em>
+      <em class="carrot-stick">"Welcome! Enter your GITHUB URL."</em>
       <div class="moomin-svg">
         <form class="moomin-form">
           <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
