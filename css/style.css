@@ -11,8 +11,8 @@ html{
 body{
   margin: 0;
   font-weight: 200;
-  /* background-color: #F8D848 */
-  background-color: #c9d99e
+  background-color: #c9d99e;
+  position: relative;
 }
 
 ul{
@@ -46,6 +46,7 @@ li{
 .header-heading{
   margin: auto 0;
   padding: 0;
+  color: #313131;
 }
 
 .input-github {
@@ -62,6 +63,84 @@ li{
 
 .input-github:focus{
   /* 추가하자 */
+}
+
+/* 커밋입력 팝업 */
+.popup{
+  width: 600px;
+  height: 250px;
+  background-color: #313131;
+  opacity: 0.95;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 3px 10px #000;
+  padding: 35px;
+  display: none;
+}
+
+.overlay{
+  background-color: #313131;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: 5;
+  display: none;
+}
+
+.popup-daily-em{
+  font-style: normal;
+  font-size: 30px;
+  display: inline-block;
+  margin-top: 15px;
+  color: #fff;
+}
+
+.popup-daily-p{
+  color: #fff;
+}
+
+.popup-daily-commit{
+  width: 300px;
+  padding-left: 10px;
+  height: 40px;
+  font-size: inherit;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  opacity: 0.95;
+  margin-top: 20px;
+}
+
+.warning-text{
+  color: yellow;
+  font-size: 12px;
+}
+
+.btn-ok{
+  border: 0;
+  height: 40px;
+  font-size: inherit;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  outline: 0;
+}
+
+.btn-close{
+  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  padding: 20px;
+  outline: 0;
+  cursor: pointer;
+  font-size: inherit;
+  color: #fff;
 }
 
 /* 커밋, 투두리스트 */
@@ -106,6 +185,14 @@ li{
   margin-top: 20px;
 }
 
+.refresh >img{
+  width: 30px;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  cursor: pointer;
+}
+
 .achieve::before{
   content: "/";
   display: inline-block;
@@ -119,7 +206,7 @@ li{
   margin-top: 20px
 }
 
-.count-week-number::before{
+.count-goal-number::before{
   content: "/";
   display: inline-block;
   width: 3px;
@@ -191,6 +278,7 @@ li{
 }
 
 .todolist-nav > li.active {
+  font-weight: 800;
   border-bottom: 2px solid #313131;
 }
 
