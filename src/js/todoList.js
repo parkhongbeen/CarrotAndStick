@@ -3,7 +3,7 @@ let navId = 'all';
 
 const $todos = document.querySelector('.todos');
 const $inputTodo = document.querySelector('.input-todo');
-const $nav = document.querySelector('.nav');
+const $nav = document.querySelector('.todolist-nav');
 const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completeAll = document.querySelector('.complete-all');
 const $completedTodos = document.querySelector('.completed-todos');

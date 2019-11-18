@@ -10401,7 +10401,7 @@ var todos = [];
 var navId = 'all';
 var $todos = document.querySelector('.todos');
 var $inputTodo = document.querySelector('.input-todo');
-var $nav = document.querySelector('.nav');
+var $nav = document.querySelector('.todolist-nav');
 var $clearCompleted = document.querySelector('.clear-completed > .btn');
 var $completeAll = document.querySelector('.complete-all');
 var $completedTodos = document.querySelector('.completed-todos');
@@ -10696,15 +10696,15 @@ $nav.onclick = function (_ref6) {
 
 /***/ 0:
 /*!*****************************************************************************************************************!*\
-  !*** multi @babel/polyfill ./src/js/index.js ./src/js/todoList.js ./src/js/changeFace.js ./src/sass/style.scss ***!
+  !*** multi @babel/polyfill ./src/js/index.js ./src/js/changeFace.js ./src/js/todoList.js ./src/sass/style.scss ***!
   \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
 __webpack_require__(/*! ./src/js/index.js */"./src/js/index.js");
-__webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 __webpack_require__(/*! ./src/js/changeFace.js */"./src/js/changeFace.js");
+__webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 module.exports = __webpack_require__(/*! ./src/sass/style.scss */"./src/sass/style.scss");
 
 

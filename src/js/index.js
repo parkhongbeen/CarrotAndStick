@@ -1,4 +1,3 @@
-
 // DOMs
 const $inputGithub = document.querySelector('.input-github');
 const $btnOk = document.querySelector('.btn-ok');
