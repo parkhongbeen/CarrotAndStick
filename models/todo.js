@@ -7,10 +7,7 @@ const todoSchema = new mongoose.Schema({
   completed: { type: Boolean, default: false }
   // nickName: { type: String, required: true },
   // goalCommit: { type: Number, required: true }
-},
-{
-  timestamps: true
-});
+},{ collection: "CommitTodos" , timestamps: true });
 
 // Create new todo document
 // Statics model methods(Statics): Schema의 statics 프로퍼티에 사용자 정의 메소드를 추가한다.
@@ -49,4 +46,4 @@ todoSchema.statics.deleteByCompleted = function () {
 };
 
 // Create Model & Export
-module.exports = mongoose.model('Todo', todoSchema);
+module.exports = mongoose.model("CommitTodos", todoSchema);
