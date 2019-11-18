@@ -10401,7 +10401,7 @@ var todos = [];
 var navId = 'all';
 var $todos = document.querySelector('.todos');
 var $inputTodo = document.querySelector('.input-todo');
-var $nav = document.querySelector('.nav');
+var $nav = document.querySelector('.todolist-nav');
 var $clearCompleted = document.querySelector('.clear-completed > .btn');
 var $completeAll = document.querySelector('.complete-all');
 var $completedTodos = document.querySelector('.completed-todos');
@@ -10446,7 +10446,7 @@ var getTodos = function getTodos() {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(axios.get('/todos'));
+          return regeneratorRuntime.awrap(axios.get('/CommitTodos'));
 
         case 3:
           res = _context.sent;
@@ -10481,7 +10481,7 @@ var addTodos = function addTodos() {
             completed: false
           };
           _context2.next = 4;
-          return regeneratorRuntime.awrap(axios.post('/todos', todo));
+          return regeneratorRuntime.awrap(axios.post('/CommitTodos', todo));
 
         case 4:
           res = _context2.sent;
@@ -10514,7 +10514,7 @@ var removeTodo = function removeTodo(id) {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]("/todos/".concat(id)));
+          return regeneratorRuntime.awrap(axios["delete"]("/CommitTodos/".concat(id)));
 
         case 3:
           res = _context3.sent;
@@ -10547,7 +10547,7 @@ var toggleTodo = function toggleTodo(id) {
             return todo.id === +id;
           }).completed;
           _context4.next = 4;
-          return regeneratorRuntime.awrap(axios.patch("/todos/".concat(id), {
+          return regeneratorRuntime.awrap(axios.patch("/CommitTodos/".concat(id), {
             completed: completed
           }));
 
@@ -10579,7 +10579,7 @@ var toggleAll = function toggleAll(completed) {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return regeneratorRuntime.awrap(axios.patch('./todos', {
+          return regeneratorRuntime.awrap(axios.patch('./CommitTodos', {
             completed: completed
           }));
 
@@ -10611,7 +10611,7 @@ var clearTodos = function clearTodos() {
         case 0:
           _context6.prev = 0;
           _context6.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]('./completedTodos'));
+          return regeneratorRuntime.awrap(axios["delete"]('./CommitTodos/completedTodos'));
 
         case 3:
           res = _context6.sent;
@@ -10696,15 +10696,15 @@ $nav.onclick = function (_ref6) {
 
 /***/ 0:
 /*!*****************************************************************************************************************!*\
-  !*** multi @babel/polyfill ./src/js/index.js ./src/js/todoList.js ./src/js/changeFace.js ./src/sass/style.scss ***!
+  !*** multi @babel/polyfill ./src/js/index.js ./src/js/changeFace.js ./src/js/todoList.js ./src/sass/style.scss ***!
   \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
 __webpack_require__(/*! ./src/js/index.js */"./src/js/index.js");
-__webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 __webpack_require__(/*! ./src/js/changeFace.js */"./src/js/changeFace.js");
+__webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 module.exports = __webpack_require__(/*! ./src/sass/style.scss */"./src/sass/style.scss");
 
 
