@@ -10349,7 +10349,6 @@ var getEvent = function getEvent() {
     if (date !== new Date().toDateString()) return;
     if (eventList.type === 'PushEvent' || eventList.type === 'PullRequestEvent' || eventList.type === 'IssuesEvent') todayCommitCount += 1;
   });
-  console.log(todayCommitCount);
   return todayCommitCount;
 }; // git API 불러오기.
 
