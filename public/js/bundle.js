@@ -10328,11 +10328,12 @@ var saveForcommit = function saveForcommit() {
   var saveGoal = 0;
   var $countGoalcommit = document.querySelector('.count-goal-number');
   var $warningText = document.querySelector('.warning-text');
-  var regxr = /^[1-9]{1,3}$/;
+  var regxr = /^([0-9]){1,3}$/;
+  var regxrzero = /^[^0]/;
   var goalCommit = $inputCommit.value;
-  $warningText.textContent = '';
+  $warningText.textContent = ''; // console.log(regxrzero.test(goalCommit));
 
-  if (regxr.test(goalCommit)) {
+  if (regxr.test(goalCommit) && regxrzero.test(goalCommit)) {
     saveGoal = goalCommit;
     $countGoalcommit.textContent = saveGoal;
     closePopup();
