@@ -15,6 +15,15 @@ const openPopup = () => {
   $inputGithub.value = '';
 };
 
+const closePopup = () => {
+  $popup.style.display = 'none';
+  $overlay.style.display = 'none';
+  $inputGithub.focus();
+  $inputGithub.classList.remove('input-github-sucess');
+  $inputGithub.classList.remove('input-github-error');
+  $inputGithub.placeholder = 'Enter your GITHUB URL!';
+};
+
 const saveForcommit = () => {
   let saveGoal = 0;
   const $countGoalcommit = document.querySelector('.count-goal-number');
@@ -29,17 +38,8 @@ const saveForcommit = () => {
     closePopup();
   } else {
     $inputCommit.value = '';
-    $warningText.textContent = `1부터 999 사이의 숫자를 입력해주세요.`;
+    $warningText.textContent = '1부터 999 사이의 숫자를 입력해주세요.';
   }
-};
-
-const closePopup = () => {
-  $popup.style.display = 'none';
-  $overlay.style.display = 'none';
-  $inputGithub.focus();
-  $inputGithub.classList.remove('input-github-sucess');
-  $inputGithub.classList.remove('input-github-error');
-  $inputGithub.placeholder = 'Enter your GITHUB URL!';
 };
 
 // Events
@@ -48,21 +48,19 @@ $inputGithub.onkeyup = ({ keyCode }) => {
   const testname = 'abc'; // 인풋 텍스트 닉네임
 
   if (keyCode !== 13) return;
-  if ($inputGithub.value == '') {
-    $inputGithub.classList.add( 'input-github-error' );
+  if ($inputGithub.value === '') {
+    $inputGithub.classList.add('input-github-error');
     $inputGithub.placeholder = 'Please enter your Nickname.';
-  } else if( $inputGithub.value == testname ) {
-    $inputGithub.classList.add( 'input-github-sucess' );
+  } else if ($inputGithub.value === testname) {
+    $inputGithub.classList.add('input-github-sucess');
     $inputGithub.placeholder = 'Thank you for using.';
-    openPopup(); // 다희님 코드
+    openPopup();
     $inputGithub.value = '';
-  } else if ( $inputGithub.value !== regExp ) {
-    $inputGithub.classList.add( 'input-github-error' );
+  } else if ($inputGithub.value !== regExp) {
+    $inputGithub.classList.add('input-github-error');
     $inputGithub.placeholder = 'This is not a valid Nickname.';
     $inputGithub.value = '';
-  };
-  // 1번, 올바른 닉네임을 입력할 경우, 팝업의 input으로 focus를 옮길 것.
-  // 2번, 팝업 창에서 x버튼을 누를 경우 input내용을 전부 비우고 focus를 input으로 다시 줄 것.
+  }
 };
 
 $btnOk.onclick = () => {

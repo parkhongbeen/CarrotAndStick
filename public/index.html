@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Carrot and Stick</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <script defer src="js/index.js"></script>
-  <script defer src="./js/changeFace.js"></script>
-  <script defer src="./js/heart.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script defer src="./js/bundle.js"></script>
 </head>
 
 <body>
@@ -34,7 +33,7 @@
         <h2 class="commit-count-heading">YOUR COMMIT</h2>
         <div class="count-now count-container">
           <span class="count-text">현재 커밋수</span>
-          <span class="refresh"><img src="/images/refresh.png" alt="새로고침"></span>
+          <span class="refresh"><img src="./images/refresh.png" alt="새로고침"></span>
           <span class="count-now-number count-number">1</span>
         </div>
         <div class="count-goal count-container">
@@ -54,31 +53,6 @@
         </ul>
 
         <ul class="todos">
-          <li id="1" class="todo-item">
-            <input class="checkbox" type="checkbox" id="ck-1">
-            <label for="ck-1">HTML</label>
-            <button class="remove-todo">X</button>
-          </li>
-          <li id="2" class="todo-item">
-            <input class="checkbox" type="checkbox" id="ck-2">
-            <label for="ck-2">CSS</label>
-            <button class="remove-todo">X</button>
-          </li>
-          <li id="3" class="todo-item">
-            <input class="checkbox" type="checkbox" id="ck-3">
-            <label for="ck-3">JavaScript</label>
-            <button class="remove-todo">X</button>
-          </li>
-          <li id="4" class="todo-item">
-            <input class="checkbox" type="checkbox" id="ck-4">
-            <label for="ck-4">React</label>
-            <button class="remove-todo">X</button>
-          </li>
-          <!-- <li id="myId" class="todo-item">
-    <input class="checkbox" type="checkbox" id="ck-myId">
-    <label for="ck-myId">CSS</label>
-    <button class="remove-todo">X</button>
-    </li> -->
         </ul>
         <footer class="todolist-footer">
           <div class="complete-all">
