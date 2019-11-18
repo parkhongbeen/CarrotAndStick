@@ -10247,51 +10247,6 @@ try {
 
 /***/ }),
 
-/***/ "./src/js/changeFace.js":
-/*!******************************!*\
-  !*** ./src/js/changeFace.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var gitCount = 4;
-var $moominForm = document.querySelector('.moomin-form');
-var $normalEye = document.querySelector('.normal-eye');
-var $angryEye = document.querySelector('.angry-eye');
-var $angryAdd = document.querySelector('.angry-add');
-var $angryMark = document.querySelectorAll('.angry-mark');
-var $happyEye = document.querySelector('.happy-eye');
-var $happyHearts = document.querySelector('.happy-hearts');
-
-$moominForm.onclick = function () {
-  if (gitCount === 2) {
-    console.dir($angryMark);
-    $normalEye.style.display = 'none';
-    $happyEye.style.display = 'none';
-    $happyHearts.style.display = 'none';
-    $angryEye.style.display = 'block';
-    $angryAdd.classList.add('angry-div');
-    $angryMark[0].style.display = 'block';
-    $angryMark[1].style.display = 'block';
-  } else if (gitCount === 3) {
-    $happyEye.style.display = 'none';
-    $happyHearts.style.display = 'none';
-    $angryEye.style.display = 'none';
-    $angryMark[0].style.display = 'none';
-    $angryMark[1].style.display = 'none';
-    $normalEye.style.display = 'block';
-  } else {
-    $angryEye.style.display = 'none';
-    $normalEye.style.display = 'none';
-    $angryMark[0].style.display = 'none';
-    $angryMark[1].style.display = 'none';
-    $happyEye.style.display = 'block';
-    $happyHearts.style.display = 'block';
-  }
-};
-
-/***/ }),
-
 /***/ "./src/js/index.js":
 /*!*************************!*\
   !*** ./src/js/index.js ***!
@@ -10305,7 +10260,6 @@ var typed = new Typed('.carrot-stick', {
   backSpeed: 100,
   cursorChar: ' '
 });
-var todayCommitCount = 0;
 var gitEvent = []; // DOMs
 
 var $inputGithub = document.querySelector('.input-github');
@@ -10315,7 +10269,46 @@ var $popup = document.querySelector('.popup');
 var $overlay = document.querySelector('.overlay');
 var $inputCommit = document.querySelector('.popup-daily-commit');
 var $countNowNumber = document.querySelector('.count-now-number');
+var $countGoalNumber = document.querySelector('.count-goal-number');
 var $refresh = document.querySelector('.refresh');
+
+var changeFace = function changeFace() {
+  // 표정 관련
+  var $normalEye = document.querySelector('.normal-eye');
+  var $angryEye = document.querySelector('.angry-eye');
+  var $angryAdd = document.querySelector('.angry-add');
+  var $angryMark = document.querySelectorAll('.angry-mark');
+  var $happyEye = document.querySelector('.happy-eye');
+  var $happyHearts = document.querySelector('.happy-hearts');
+  var goalGitNumber = +$countGoalNumber.textContent;
+  var currentGitNumber = +$countNowNumber.textContent;
+
+  if (currentGitNumber < goalGitNumber / 2) {
+    $normalEye.style.display = 'none';
+    $happyEye.style.display = 'none';
+    $happyHearts.style.display = 'none';
+    $angryEye.style.display = 'block';
+    $angryAdd.classList.add('angry-div');
+    $angryMark[0].style.display = 'block';
+    $angryMark[1].style.display = 'block';
+  } else if (currentGitNumber >= goalGitNumber / 2 && currentGitNumber < goalGitNumber) {
+    // 무표정
+    $happyEye.style.display = 'none';
+    $happyHearts.style.display = 'none';
+    $angryEye.style.display = 'none';
+    $angryMark[0].style.display = 'none';
+    $angryMark[1].style.display = 'none';
+    $normalEye.style.display = 'block';
+  } else if (currentGitNumber >= goalGitNumber) {
+    // 즐거움
+    $angryEye.style.display = 'none';
+    $normalEye.style.display = 'none';
+    $angryMark[0].style.display = 'none';
+    $angryMark[1].style.display = 'none';
+    $happyEye.style.display = 'block';
+    $happyHearts.style.display = 'block';
+  }
+};
 
 var openPopup = function openPopup() {
   $popup.style.display = 'block';
@@ -10340,7 +10333,7 @@ var saveForcommit = function saveForcommit() {
   var regxr = /^([0-9]){1,3}$/;
   var regxrzero = /^[^0]/;
   var goalCommit = $inputCommit.value;
-  $warningText.textContent = ''; // console.log(regxrzero.test(goalCommit));
+  $warningText.textContent = '';
 
   if (regxr.test(goalCommit) && regxrzero.test(goalCommit)) {
     saveGoal = goalCommit;
@@ -10350,20 +10343,20 @@ var saveForcommit = function saveForcommit() {
     $inputCommit.value = '';
     $warningText.textContent = '1부터 999 사이의 숫자를 입력해주세요.';
   }
+
+  changeFace();
 };
 
 var getEvent = function getEvent() {
+  var todayCommitCount = 0;
   var date = '';
   gitEvent.forEach(function (eventList) {
     date = new Date(eventList.created_at).toDateString();
-
-    if (date === new Date().toDateString()) {
-      eventList.type === 'PushEvent' || eventList.type === 'PullRequestEvent' || eventList.type === 'IssuesEvent' ? ++todayCommitCount : '';
-    }
+    if (date !== new Date().toDateString()) return;
+    if (eventList.type === 'PushEvent' || eventList.type === 'PullRequestEvent' || eventList.type === 'IssuesEvent') todayCommitCount += 1;
   });
-  console.log(todayCommitCount);
   return todayCommitCount;
-}; // 이벤트 함수
+}; // git API 불러오기.
 
 
 var getGitHubCommit = function getGitHubCommit(username) {
@@ -10413,7 +10406,6 @@ $inputGithub.onkeyup = function (_ref) {
     $inputGithub.classList.add('input-github-sucess');
     $inputGithub.placeholder = 'Thank you for using.';
     getGitHubCommit($inputGithub.value);
-    console.log('abcd');
     openPopup();
   }
 
@@ -10501,7 +10493,7 @@ var getTodos = function getTodos() {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(axios.get('/CommitTodos'));
+          return regeneratorRuntime.awrap(axios.get('./CommitTodos'));
 
         case 3:
           res = _context.sent;
@@ -10536,7 +10528,7 @@ var addTodos = function addTodos() {
             completed: false
           };
           _context2.next = 4;
-          return regeneratorRuntime.awrap(axios.post('/CommitTodos', todo));
+          return regeneratorRuntime.awrap(axios.post('./CommitTodos', todo));
 
         case 4:
           res = _context2.sent;
@@ -10569,7 +10561,7 @@ var removeTodo = function removeTodo(id) {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]("/CommitTodos/".concat(id)));
+          return regeneratorRuntime.awrap(axios["delete"]("./CommitTodos/".concat(id)));
 
         case 3:
           res = _context3.sent;
@@ -10750,15 +10742,14 @@ $nav.onclick = function (_ref6) {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************!*\
-  !*** multi @babel/polyfill ./src/js/index.js ./src/js/changeFace.js ./src/js/todoList.js ./src/sass/style.scss ***!
-  \*****************************************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** multi @babel/polyfill ./src/js/index.js ./src/js/todoList.js ./src/sass/style.scss ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
 __webpack_require__(/*! ./src/js/index.js */"./src/js/index.js");
-__webpack_require__(/*! ./src/js/changeFace.js */"./src/js/changeFace.js");
 __webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 module.exports = __webpack_require__(/*! ./src/sass/style.scss */"./src/sass/style.scss");
 

@@ -13,7 +13,9 @@ const $activeTodos = document.querySelector('.active-todos');
 const render = () => {
   let html = '';
 
-  const _todos = todos.filter((todo) => (navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed));
+  const _todos = todos.filter(todo => (
+    navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed
+  ));
   _todos.forEach(({ id, content, completed }) => {
     html += `
     <li id="${id}" class="todo-item">
@@ -23,18 +25,18 @@ const render = () => {
     </li>`;
   });
 
-  $completedTodos.textContent = todos.filter((todo) => todo.completed).length;
-  $activeTodos.textContent = todos.filter((todo) => !todo.completed).length;
+  $completedTodos.textContent = todos.filter(todo => todo.completed).length;
+  $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
   $todos.innerHTML = html;
 };
 
 // 기능
-const findMaxId = () => Math.max(0, ...todos.map((todo) => todo.id)) + 1;
+const findMaxId = () => Math.max(0, ...todos.map(todo => todo.id)) + 1;
 
 // 이벤트 함수
 const getTodos = async () => {
   try {
-    const res = await axios.get('/CommitTodos');
+    const res = await axios.get('./CommitTodos');
     todos = res.data;
     render();
   } catch (error) {
@@ -45,7 +47,7 @@ const getTodos = async () => {
 const addTodos = async () => {
   try {
     const todo = { id: findMaxId(), content: $inputTodo.value, completed: false };
-    const res = await axios.post('/CommitTodos', todo);
+    const res = await axios.post('./CommitTodos', todo);
     todos = res.data;
     render();
   } catch (error) {
@@ -54,9 +56,9 @@ const addTodos = async () => {
   $inputTodo.value = '';
 };
 
-const removeTodo = async (id) => {
+const removeTodo = async id => {
   try {
-    const res = await axios.delete(`/CommitTodos/${id}`);
+    const res = await axios.delete(`./CommitTodos/${id}`);
     todos = res.data;
     render();
   } catch (error) {
@@ -64,9 +66,9 @@ const removeTodo = async (id) => {
   }
 };
 
-const toggleTodo = async (id) => {
+const toggleTodo = async id => {
   try {
-    const completed = !todos.find((todo) => todo.id === +id).completed;
+    const completed = !todos.find(todo => todo.id === +id).completed;
     const res = await axios.patch(`/CommitTodos/${id}`, { completed });
     todos = res.data;
     render();
@@ -75,7 +77,7 @@ const toggleTodo = async (id) => {
   }
 };
 
-const toggleAll = async (completed) => {
+const toggleAll = async completed => {
   try {
     const res = await axios.patch('./CommitTodos', { completed });
     todos = res.data;
@@ -95,8 +97,8 @@ const clearTodos = async () => {
   }
 };
 
-const changeNav = (li) => {
-  [...$nav.children].forEach(($list) => {
+const changeNav = li => {
+  [...$nav.children].forEach($list => {
     $list.classList.toggle('active', $list === li);
   });
   navId = li.id;

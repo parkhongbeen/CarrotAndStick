@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // entry files
-  entry: ['@babel/polyfill', './src/js/index.js', './src/js/changeFace.js', './src/js/todoList.js', './src/sass/style.scss'],
+  entry: ['@babel/polyfill', './src/js/index.js', './src/js/todoList.js', './src/sass/style.scss'],
   // 컴파일 + 번들링된 js 파일이 저장될 경로와 이름 지정
   output: {
     // 트랜스파일링된 소스 코드는 public에 저장된다.

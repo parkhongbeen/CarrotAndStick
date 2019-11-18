@@ -16,6 +16,10 @@ module.exports = {
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "comma-dangle": ["error", "never"],
     "func-names": [2, "never"],
-    "arrow-parens": ["error", "as-needed"]
+    "arrow-parens": ["error", "as-needed"],
+    "no-nested-ternary": 0,
+    "no-param-reassign": 0,
+    "prefer-arrow-callback": 0,
+    "eqeqeq": 0
   }
 };
