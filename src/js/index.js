@@ -31,11 +31,13 @@ const saveForcommit = () => {
   let saveGoal = 0;
   const $countGoalcommit = document.querySelector('.count-goal-number');
   const $warningText = document.querySelector('.warning-text');
-  const regxr = /^[1-9]{1,3}$/;
+  const regxr = /^([0-9]){1,3}$/;
+  const regxrzero = /^[^0]/;
   const goalCommit = $inputCommit.value;
   $warningText.textContent = '';
+  // console.log(regxrzero.test(goalCommit));
 
-  if (regxr.test(goalCommit)) {
+  if (regxr.test(goalCommit) && regxrzero.test(goalCommit)) {
     saveGoal = goalCommit;
     $countGoalcommit.textContent = saveGoal;
     closePopup();
