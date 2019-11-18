@@ -3,7 +3,7 @@ let navId = 'all';
 
 const $todos = document.querySelector('.todos');
 const $inputTodo = document.querySelector('.input-todo');
-const $nav = document.querySelector('.nav');
+const $nav = document.querySelector('.todolist-nav');
 const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completeAll = document.querySelector('.complete-all');
 const $completedTodos = document.querySelector('.completed-todos');
@@ -34,7 +34,7 @@ const findMaxId = () => Math.max(0, ...todos.map((todo) => todo.id)) + 1;
 // 이벤트 함수
 const getTodos = async () => {
   try {
-    const res = await axios.get('/todos');
+    const res = await axios.get('/CommitTodos');
     todos = res.data;
     render();
   } catch (error) {
@@ -45,7 +45,7 @@ const getTodos = async () => {
 const addTodos = async () => {
   try {
     const todo = { id: findMaxId(), content: $inputTodo.value, completed: false };
-    const res = await axios.post('/todos', todo);
+    const res = await axios.post('/CommitTodos', todo);
     todos = res.data;
     render();
   } catch (error) {
@@ -56,7 +56,7 @@ const addTodos = async () => {
 
 const removeTodo = async (id) => {
   try {
-    const res = await axios.delete(`/todos/${id}`);
+    const res = await axios.delete(`/CommitTodos/${id}`);
     todos = res.data;
     render();
   } catch (error) {
@@ -67,7 +67,7 @@ const removeTodo = async (id) => {
 const toggleTodo = async (id) => {
   try {
     const completed = !todos.find((todo) => todo.id === +id).completed;
-    const res = await axios.patch(`/todos/${id}`, { completed });
+    const res = await axios.patch(`/CommitTodos/${id}`, { completed });
     todos = res.data;
     render();
   } catch (error) {
@@ -77,7 +77,7 @@ const toggleTodo = async (id) => {
 
 const toggleAll = async (completed) => {
   try {
-    const res = await axios.patch('./todos', { completed });
+    const res = await axios.patch('./CommitTodos', { completed });
     todos = res.data;
     render();
   } catch (error) {
@@ -87,7 +87,7 @@ const toggleAll = async (completed) => {
 
 const clearTodos = async () => {
   try {
-    const res = await axios.delete('./completedTodos');
+    const res = await axios.delete('./CommitTodos/completedTodos');
     todos = res.data;
     render();
   } catch (error) {

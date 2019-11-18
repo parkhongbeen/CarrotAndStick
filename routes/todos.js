@@ -41,7 +41,7 @@ router.delete('/:id([0-9]+)', (req, res) => {
 });
 
 // Delete by completed
-router.delete('/completed', (req, res) => {
+router.delete('/completedTodos', (req, res) => {
   Todo.deleteByCompleted()
     .then(() => Todo.findAll())
     .then(todos => res.send(todos))
