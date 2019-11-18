@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const todoSchema = new mongoose.Schema({
   id: { type: Number, required: true, unique: true },
   content: { type: String, required: true },
-  completed: { type: Boolean, default: false },
-  nickName: { type: String, required: true },
-  goalCommit: { type: Number, required: true }
+  completed: { type: Boolean, default: false }
+  // nickName: { type: String, required: true },
+  // goalCommit: { type: Number, required: true }
 },
 {
   timestamps: true

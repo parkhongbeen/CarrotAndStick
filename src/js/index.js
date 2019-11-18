@@ -1,4 +1,3 @@
-
 const typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
   typeSpeed: 100,
@@ -6,7 +5,6 @@ const typed = new Typed('.carrot-stick', {
   cursorChar: ' '
 });
 
-let todayCommitCount = 0;
 let gitEvent = [];
 
 // DOMs
@@ -17,7 +15,46 @@ const $popup = document.querySelector('.popup');
 const $overlay = document.querySelector('.overlay');
 const $inputCommit = document.querySelector('.popup-daily-commit');
 const $countNowNumber = document.querySelector('.count-now-number');
+const $countGoalNumber = document.querySelector('.count-goal-number');
 const $refresh = document.querySelector('.refresh');
+
+const changeFace = () => {
+  // 표정 관련
+  const $normalEye = document.querySelector('.normal-eye');
+  const $angryEye = document.querySelector('.angry-eye');
+  const $angryAdd = document.querySelector('.angry-add');
+  const $angryMark = document.querySelectorAll('.angry-mark');
+  const $happyEye = document.querySelector('.happy-eye');
+  const $happyHearts = document.querySelector('.happy-hearts');
+  const goalGitNumber = +$countGoalNumber.textContent;
+  const currentGitNumber = +$countNowNumber.textContent;
+
+  if (currentGitNumber < goalGitNumber / 2) {
+    $normalEye.style.display = 'none';
+    $happyEye.style.display = 'none';
+    $happyHearts.style.display = 'none';
+    $angryEye.style.display = 'block';
+    $angryAdd.classList.add('angry-div');
+    $angryMark[0].style.display = 'block';
+    $angryMark[1].style.display = 'block';
+  } else if (currentGitNumber >= goalGitNumber / 2 && currentGitNumber < goalGitNumber) {
+    // 무표정
+    $happyEye.style.display = 'none';
+    $happyHearts.style.display = 'none';
+    $angryEye.style.display = 'none';
+    $angryMark[0].style.display = 'none';
+    $angryMark[1].style.display = 'none';
+    $normalEye.style.display = 'block';
+  } else if (currentGitNumber >= goalGitNumber) {
+    // 즐거움
+    $angryEye.style.display = 'none';
+    $normalEye.style.display = 'none';
+    $angryMark[0].style.display = 'none';
+    $angryMark[1].style.display = 'none';
+    $happyEye.style.display = 'block';
+    $happyHearts.style.display = 'block';
+  }
+};
 
 const openPopup = () => {
   $popup.style.display = 'block';
@@ -43,7 +80,6 @@ const saveForcommit = () => {
   const regxrzero = /^[^0]/;
   const goalCommit = $inputCommit.value;
   $warningText.textContent = '';
-  // console.log(regxrzero.test(goalCommit));
 
   if (regxr.test(goalCommit) && regxrzero.test(goalCommit)) {
     saveGoal = goalCommit;
@@ -53,23 +89,23 @@ const saveForcommit = () => {
     $inputCommit.value = '';
     $warningText.textContent = '1부터 999 사이의 숫자를 입력해주세요.';
   }
+  changeFace();
 };
 
 const getEvent = () => {
+  let todayCommitCount = 0;
   let date = '';
 
   gitEvent.forEach(eventList => {
     date = new Date(eventList.created_at).toDateString();
-    if (date === new Date().toDateString()) {
-      eventList.type === 'PushEvent' || eventList.type === 'PullRequestEvent' ||  eventList.type === 'IssuesEvent' ? ++todayCommitCount : '';
-    }
+    if (date !== new Date().toDateString()) return;
+    if (eventList.type === 'PushEvent' || eventList.type === 'PullRequestEvent' || eventList.type === 'IssuesEvent') todayCommitCount += 1;
   });
-  console.log(todayCommitCount);
   return todayCommitCount;
 };
 
 
-// 이벤트 함수
+// git API 불러오기.
 const getGitHubCommit = async username => {
   try {
     const res = await axios.get(`https://api.github.com/users/${username}/events`);
@@ -96,7 +132,6 @@ $inputGithub.onkeyup = ({ keyCode }) => {
     $inputGithub.classList.add('input-github-sucess');
     $inputGithub.placeholder = 'Thank you for using.';
     getGitHubCommit($inputGithub.value);
-    console.log('abcd');
     openPopup();
   }
   $inputGithub.value = '';
