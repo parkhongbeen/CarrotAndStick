@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .catch(console.error);
 
 // ROUTERS
-app.use('/todos', require('./routes/todos'));
+app.use('/CommitTodos', require('./routes/todos'));
 
 // app.get('/', (req, res) => res.send('Hello World!'));
 
