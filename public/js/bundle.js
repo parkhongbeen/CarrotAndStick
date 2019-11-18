@@ -10299,13 +10299,16 @@ $moominForm.onclick = function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// DOMs
+var todayCommitCount = 0;
+var gitEvent = []; // DOMs
+
 var $inputGithub = document.querySelector('.input-github');
 var $btnOk = document.querySelector('.btn-ok');
 var $btnClose = document.querySelector('.btn-close');
 var $popup = document.querySelector('.popup');
 var $overlay = document.querySelector('.overlay');
 var $inputCommit = document.querySelector('.popup-daily-commit');
+var $countNowNumber = document.querySelector('.count-now-number');
 var $refresh = document.querySelector('.refresh');
 
 var openPopup = function openPopup() {
@@ -10328,11 +10331,12 @@ var saveForcommit = function saveForcommit() {
   var saveGoal = 0;
   var $countGoalcommit = document.querySelector('.count-goal-number');
   var $warningText = document.querySelector('.warning-text');
-  var regxr = /^[1-9]{1,3}$/;
+  var regxr = /^([0-9]){1,3}$/;
+  var regxrzero = /^[^0]/;
   var goalCommit = $inputCommit.value;
-  $warningText.textContent = '';
+  $warningText.textContent = ''; // console.log(regxrzero.test(goalCommit));
 
-  if (regxr.test(goalCommit)) {
+  if (regxr.test(goalCommit) && regxrzero.test(goalCommit)) {
     saveGoal = goalCommit;
     $countGoalcommit.textContent = saveGoal;
     closePopup();
@@ -10340,29 +10344,74 @@ var saveForcommit = function saveForcommit() {
     $inputCommit.value = '';
     $warningText.textContent = '1부터 999 사이의 숫자를 입력해주세요.';
   }
+};
+
+var getEvent = function getEvent() {
+  var date = '';
+  gitEvent.forEach(function (eventList) {
+    date = new Date(eventList.created_at).toDateString();
+
+    if (date === new Date().toDateString()) {
+      eventList.type === 'PushEvent' || eventList.type === 'PullRequestEvent' || eventList.type === 'IssuesEvent' ? ++todayCommitCount : '';
+    }
+  });
+  console.log(todayCommitCount);
+  return todayCommitCount;
+}; // 이벤트 함수
+
+
+var getGitHubCommit = function getGitHubCommit(username) {
+  var res;
+  return regeneratorRuntime.async(function getGitHubCommit$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return regeneratorRuntime.awrap(axios.get("https://api.github.com/users/".concat(username, "/events")));
+
+        case 3:
+          res = _context.sent;
+          gitEvent = res.data;
+          $countNowNumber.textContent = getEvent();
+          _context.next = 11;
+          break;
+
+        case 8:
+          _context.prev = 8;
+          _context.t0 = _context["catch"](0);
+          console.log(_context.t0);
+
+        case 11:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, null, null, [[0, 8]]);
 }; // Events
 
 
 $inputGithub.onkeyup = function (_ref) {
   var keyCode = _ref.keyCode;
   var regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=_-])(?=.*[0-9]).{6,16}$/;
-  var testname = 'abc'; // 인풋 텍스트 닉네임
-
   if (keyCode !== 13) return;
 
   if ($inputGithub.value === '') {
     $inputGithub.classList.add('input-github-error');
     $inputGithub.placeholder = 'Please enter your Nickname.';
-  } else if ($inputGithub.value === testname) {
-    $inputGithub.classList.add('input-github-sucess');
-    $inputGithub.placeholder = 'Thank you for using.';
-    openPopup();
-    $inputGithub.value = '';
-  } else if ($inputGithub.value !== regExp) {
+  } else if (regExp.test($inputCommit.value)) {
     $inputGithub.classList.add('input-github-error');
     $inputGithub.placeholder = 'This is not a valid Nickname.';
     $inputGithub.value = '';
+  } else {
+    $inputGithub.classList.add('input-github-sucess');
+    $inputGithub.placeholder = 'Thank you for using.';
+    getGitHubCommit($inputGithub.value);
+    console.log('abcd');
+    openPopup();
   }
+
+  $inputGithub.value = '';
 };
 
 $btnOk.onclick = function () {
@@ -10446,7 +10495,7 @@ var getTodos = function getTodos() {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(axios.get('/todos'));
+          return regeneratorRuntime.awrap(axios.get('/CommitTodos'));
 
         case 3:
           res = _context.sent;
@@ -10481,7 +10530,7 @@ var addTodos = function addTodos() {
             completed: false
           };
           _context2.next = 4;
-          return regeneratorRuntime.awrap(axios.post('/todos', todo));
+          return regeneratorRuntime.awrap(axios.post('/CommitTodos', todo));
 
         case 4:
           res = _context2.sent;
@@ -10514,7 +10563,7 @@ var removeTodo = function removeTodo(id) {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]("/todos/".concat(id)));
+          return regeneratorRuntime.awrap(axios["delete"]("/CommitTodos/".concat(id)));
 
         case 3:
           res = _context3.sent;
@@ -10547,7 +10596,7 @@ var toggleTodo = function toggleTodo(id) {
             return todo.id === +id;
           }).completed;
           _context4.next = 4;
-          return regeneratorRuntime.awrap(axios.patch("/todos/".concat(id), {
+          return regeneratorRuntime.awrap(axios.patch("/CommitTodos/".concat(id), {
             completed: completed
           }));
 
@@ -10579,7 +10628,7 @@ var toggleAll = function toggleAll(completed) {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return regeneratorRuntime.awrap(axios.patch('./todos', {
+          return regeneratorRuntime.awrap(axios.patch('./CommitTodos', {
             completed: completed
           }));
 
@@ -10611,7 +10660,7 @@ var clearTodos = function clearTodos() {
         case 0:
           _context6.prev = 0;
           _context6.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]('./completedTodos'));
+          return regeneratorRuntime.awrap(axios["delete"]('./CommitTodos/completedTodos'));
 
         case 3:
           res = _context6.sent;
