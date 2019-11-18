@@ -36,7 +36,7 @@ const findMaxId = () => Math.max(0, ...todos.map(todo => todo.id)) + 1;
 // 이벤트 함수
 const getTodos = async () => {
   try {
-    const res = await axios.get('./CommitTodos');
+    const res = await axios.get('/CommitTodos');
     todos = res.data;
     render();
   } catch (error) {
@@ -47,7 +47,7 @@ const getTodos = async () => {
 const addTodos = async () => {
   try {
     const todo = { id: findMaxId(), content: $inputTodo.value, completed: false };
-    const res = await axios.post('./CommitTodos', todo);
+    const res = await axios.post('/CommitTodos', todo);
     todos = res.data;
     render();
   } catch (error) {
@@ -58,7 +58,7 @@ const addTodos = async () => {
 
 const removeTodo = async id => {
   try {
-    const res = await axios.delete(`./CommitTodos/${id}`);
+    const res = await axios.delete(`/CommitTodos/${id}`);
     todos = res.data;
     render();
   } catch (error) {
@@ -79,7 +79,7 @@ const toggleTodo = async id => {
 
 const toggleAll = async completed => {
   try {
-    const res = await axios.patch('./CommitTodos', { completed });
+    const res = await axios.patch('/CommitTodos', { completed });
     todos = res.data;
     render();
   } catch (error) {
@@ -89,7 +89,7 @@ const toggleAll = async completed => {
 
 const clearTodos = async () => {
   try {
-    const res = await axios.delete('./CommitTodos/completedTodos');
+    const res = await axios.delete('/CommitTodos/completedTodos');
     todos = res.data;
     render();
   } catch (error) {
