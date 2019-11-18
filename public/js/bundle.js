@@ -10328,11 +10328,12 @@ var saveForcommit = function saveForcommit() {
   var saveGoal = 0;
   var $countGoalcommit = document.querySelector('.count-goal-number');
   var $warningText = document.querySelector('.warning-text');
-  var regxr = /^[1-9]{1,3}$/;
+  var regxr = /^([0-9]){1,3}$/;
+  var regxrzero = /^[^0]/;
   var goalCommit = $inputCommit.value;
-  $warningText.textContent = '';
+  $warningText.textContent = ''; // console.log(regxrzero.test(goalCommit));
 
-  if (regxr.test(goalCommit)) {
+  if (regxr.test(goalCommit) && regxrzero.test(goalCommit)) {
     saveGoal = goalCommit;
     $countGoalcommit.textContent = saveGoal;
     closePopup();
@@ -10696,15 +10697,15 @@ $nav.onclick = function (_ref6) {
 
 /***/ 0:
 /*!*****************************************************************************************************************!*\
-  !*** multi @babel/polyfill ./src/js/index.js ./src/js/todoList.js ./src/js/changeFace.js ./src/sass/style.scss ***!
+  !*** multi @babel/polyfill ./src/js/index.js ./src/js/changeFace.js ./src/js/todoList.js ./src/sass/style.scss ***!
   \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
 __webpack_require__(/*! ./src/js/index.js */"./src/js/index.js");
-__webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 __webpack_require__(/*! ./src/js/changeFace.js */"./src/js/changeFace.js");
+__webpack_require__(/*! ./src/js/todoList.js */"./src/js/todoList.js");
 module.exports = __webpack_require__(/*! ./src/sass/style.scss */"./src/sass/style.scss");
 
 
