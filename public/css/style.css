@@ -271,7 +271,8 @@ li {
   color: #313131;
   display: block;
   text-align: center;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  height: 30px; }
 
 .moomin-form {
   padding: 0; }
