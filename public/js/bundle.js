@@ -10256,8 +10256,8 @@ try {
 
 var typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
-  typeSpeed: 100,
-  backSpeed: 100,
+  typeSpeed: 80,
+  backSpeed: 70,
   cursorChar: ' '
 });
 var gitEvent = []; // DOMs
@@ -10291,6 +10291,13 @@ var changeFace = function changeFace() {
     $angryAdd.classList.add('angry-div');
     $angryMark[0].style.display = 'block';
     $angryMark[1].style.display = 'block';
+
+    var _typed = new Typed('.carrot-stick', {
+      strings: ['Oh my god..', 'What are you doing?'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      cursorChar: ' '
+    });
   } else if (currentGitNumber >= goalGitNumber / 2 && currentGitNumber < goalGitNumber) {
     // 무표정
     $happyEye.style.display = 'none';
@@ -10299,6 +10306,13 @@ var changeFace = function changeFace() {
     $angryMark[0].style.display = 'none';
     $angryMark[1].style.display = 'none';
     $normalEye.style.display = 'block';
+
+    var _typed2 = new Typed('.carrot-stick', {
+      strings: ['Cheer up!', 'Please keep up the good work.'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      cursorChar: ' '
+    });
   } else if (currentGitNumber >= goalGitNumber) {
     // 즐거움
     $angryEye.style.display = 'none';
@@ -10307,6 +10321,13 @@ var changeFace = function changeFace() {
     $angryMark[1].style.display = 'none';
     $happyEye.style.display = 'block';
     $happyHearts.style.display = 'block';
+
+    var _typed3 = new Typed('.carrot-stick', {
+      strings: ['Good job!', 'You are the best!'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      cursorChar: ' '
+    });
   }
 };
 
@@ -10323,7 +10344,7 @@ var closePopup = function closePopup() {
   $inputGithub.focus();
   $inputGithub.classList.remove('input-github-sucess');
   $inputGithub.classList.remove('input-github-error');
-  $inputGithub.placeholder = 'Enter your GITHUB URL!';
+  $inputGithub.placeholder = 'Enter your GITHUB Nickname!';
 };
 
 var saveForcommit = function saveForcommit() {
@@ -10493,7 +10514,7 @@ var getTodos = function getTodos() {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(axios.get('./CommitTodos'));
+          return regeneratorRuntime.awrap(axios.get('/CommitTodos'));
 
         case 3:
           res = _context.sent;
@@ -10528,7 +10549,7 @@ var addTodos = function addTodos() {
             completed: false
           };
           _context2.next = 4;
-          return regeneratorRuntime.awrap(axios.post('./CommitTodos', todo));
+          return regeneratorRuntime.awrap(axios.post('/CommitTodos', todo));
 
         case 4:
           res = _context2.sent;
@@ -10561,7 +10582,7 @@ var removeTodo = function removeTodo(id) {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]("./CommitTodos/".concat(id)));
+          return regeneratorRuntime.awrap(axios["delete"]("/CommitTodos/".concat(id)));
 
         case 3:
           res = _context3.sent;
@@ -10626,7 +10647,7 @@ var toggleAll = function toggleAll(completed) {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return regeneratorRuntime.awrap(axios.patch('./CommitTodos', {
+          return regeneratorRuntime.awrap(axios.patch('/CommitTodos', {
             completed: completed
           }));
 
@@ -10658,7 +10679,7 @@ var clearTodos = function clearTodos() {
         case 0:
           _context6.prev = 0;
           _context6.next = 3;
-          return regeneratorRuntime.awrap(axios["delete"]('./CommitTodos/completedTodos'));
+          return regeneratorRuntime.awrap(axios["delete"]('/CommitTodos/completedTodos'));
 
         case 3:
           res = _context6.sent;
