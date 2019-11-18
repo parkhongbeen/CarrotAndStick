@@ -10299,6 +10299,12 @@ $moominForm.onclick = function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+var typed = new Typed('.carrot-stick', {
+  strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
+  typeSpeed: 100,
+  backSpeed: 100,
+  cursorChar: ' '
+});
 var todayCommitCount = 0;
 var gitEvent = []; // DOMs
 

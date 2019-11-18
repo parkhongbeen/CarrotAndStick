@@ -1,3 +1,11 @@
+
+const typed = new Typed('.carrot-stick', {
+  strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
+  typeSpeed: 100,
+  backSpeed: 100,
+  cursorChar: ' '
+});
+
 let todayCommitCount = 0;
 let gitEvent = [];
 
