@@ -6,6 +6,7 @@ const typed = new Typed('.carrot-stick', {
 });
 
 let gitEvent = [];
+let userName = '';
 
 // DOMs
 const $inputGithub = document.querySelector('.input-github');
@@ -124,9 +125,9 @@ const getEvent = () => {
 
 
 // git API 불러오기.
-const getGitHubCommit = async username => {
+const getGitHubCommit = async () => {
   try {
-    const res = await axios.get(`https://api.github.com/users/${username}/events`);
+    const res = await axios.get(`https://api.github.com/users/${userName}/events`);
     gitEvent = res.data;
     $countNowNumber.textContent = getEvent();
   } catch (error) {
@@ -149,7 +150,8 @@ $inputGithub.onkeyup = ({ keyCode }) => {
   } else {
     $inputGithub.classList.add('input-github-sucess');
     $inputGithub.placeholder = 'Thank you for using.';
-    getGitHubCommit($inputGithub.value);
+    userName = $inputGithub.value;
+    getGitHubCommit();
     openPopup();
   }
   $inputGithub.value = '';
@@ -168,6 +170,13 @@ $btnClose.onclick = () => {
   closePopup();
 };
 
-// $refresh.onclick = () => {
-
-// };
+$refresh.onclick = async () => {
+  try {
+    const res = await axios.get(`https://api.github.com/users/${userName}/events`);
+    console.log('git commit 새로고침 성공 : ', userName);
+    gitEvent = res.data;
+    $countNowNumber.textContent = getEvent();
+  } catch (error) {
+    console.log(error);
+  }
+};

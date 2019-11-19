@@ -10260,7 +10260,8 @@ var typed = new Typed('.carrot-stick', {
   backSpeed: 70,
   cursorChar: ' '
 });
-var gitEvent = []; // DOMs
+var gitEvent = [];
+var userName = ''; // DOMs
 
 var $inputGithub = document.querySelector('.input-github');
 var $btnOk = document.querySelector('.btn-ok');
@@ -10380,7 +10381,7 @@ var getEvent = function getEvent() {
 }; // git API 불러오기.
 
 
-var getGitHubCommit = function getGitHubCommit(username) {
+var getGitHubCommit = function getGitHubCommit() {
   var res;
   return regeneratorRuntime.async(function getGitHubCommit$(_context) {
     while (1) {
@@ -10388,7 +10389,7 @@ var getGitHubCommit = function getGitHubCommit(username) {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(axios.get("https://api.github.com/users/".concat(username, "/events")));
+          return regeneratorRuntime.awrap(axios.get("https://api.github.com/users/".concat(userName, "/events")));
 
         case 3:
           res = _context.sent;
@@ -10426,7 +10427,8 @@ $inputGithub.onkeyup = function (_ref) {
   } else {
     $inputGithub.classList.add('input-github-sucess');
     $inputGithub.placeholder = 'Thank you for using.';
-    getGitHubCommit($inputGithub.value);
+    userName = $inputGithub.value;
+    getGitHubCommit();
     openPopup();
   }
 
@@ -10445,8 +10447,38 @@ $inputCommit.onkeyup = function (_ref2) {
 
 $btnClose.onclick = function () {
   closePopup();
-}; // $refresh.onclick = () => {
-// };
+};
+
+$refresh.onclick = function _callee() {
+  var res;
+  return regeneratorRuntime.async(function _callee$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return regeneratorRuntime.awrap(axios.get("https://api.github.com/users/".concat(userName, "/events")));
+
+        case 3:
+          res = _context2.sent;
+          console.log('git commit 새로고침 성공 : ', userName);
+          gitEvent = res.data;
+          $countNowNumber.textContent = getEvent();
+          _context2.next = 12;
+          break;
+
+        case 9:
+          _context2.prev = 9;
+          _context2.t0 = _context2["catch"](0);
+          console.log(_context2.t0);
+
+        case 12:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  }, null, null, [[0, 9]]);
+};
 
 /***/ }),
 
