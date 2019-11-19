@@ -1,11 +1,18 @@
-const typed = new Typed('.carrot-stick', {
+/* eslint-disable import/no-mutable-exports */
+const Typed = require('typed.js');
+const axios = require('axios');
+
+// eslint-disable-next-line import/prefer-default-export
+export let userName = '';
+let gitEvent = [];
+
+// eslint-disable-next-line no-unused-vars
+let typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
   typeSpeed: 80,
   backSpeed: 80,
   cursorChar: ' '
 });
-
-let gitEvent = [];
 
 // DOMs
 const $inputGithub = document.querySelector('.input-github');
@@ -37,7 +44,7 @@ const changeFace = () => {
     $angryAdd.classList.add('angry-div');
     $angryMark[0].style.display = 'block';
     $angryMark[1].style.display = 'block';
-    const typed = new Typed('.carrot-stick', {
+    typed = new Typed('.carrot-stick', {
       strings: ['Oh my god..', 'What are you doing?'],
       typeSpeed: 80,
       backSpeed: 50,
@@ -51,7 +58,7 @@ const changeFace = () => {
     $angryMark[0].style.display = 'none';
     $angryMark[1].style.display = 'none';
     $normalEye.style.display = 'block';
-    const typed = new Typed('.carrot-stick', {
+    typed = new Typed('.carrot-stick', {
       strings: ['Cheer up!', 'Please keep up the good work.'],
       typeSpeed: 80,
       backSpeed: 50,
@@ -65,7 +72,7 @@ const changeFace = () => {
     $angryMark[1].style.display = 'none';
     $happyEye.style.display = 'block';
     $happyHearts.style.display = 'block';
-    const typed = new Typed('.carrot-stick', {
+    typed = new Typed('.carrot-stick', {
       strings: ['Good job!', 'You are the best!'],
       typeSpeed: 80,
       backSpeed: 50,
@@ -124,9 +131,9 @@ const getEvent = () => {
 
 
 // git API 불러오기.
-const getGitHubCommit = async username => {
+const getGitHubCommit = async () => {
   try {
-    const res = await axios.get(`https://api.github.com/users/${username}/events`);
+    const res = await axios.get(`https://api.github.com/users/${userName}/events`);
     gitEvent = res.data;
     $countNowNumber.textContent = getEvent();
   } catch (error) {
@@ -149,7 +156,8 @@ $inputGithub.onkeyup = ({ keyCode }) => {
   } else {
     $inputGithub.classList.add('input-github-sucess');
     $inputGithub.placeholder = 'Thank you for using.';
-    getGitHubCommit($inputGithub.value);
+    userName = $inputGithub.value;
+    getGitHubCommit();
     openPopup();
   }
   $inputGithub.value = '';
@@ -168,6 +176,13 @@ $btnClose.onclick = () => {
   closePopup();
 };
 
+<<<<<<< HEAD
 // $refresh.onclick = () => {
 
 // };
+=======
+$refresh.onclick = async () => {
+  if (userName === '') return;
+  getGitHubCommit();
+};
+>>>>>>> 3ffc7f5573c1fc864ce3d4ccb89457468757c187
