@@ -1,4 +1,8 @@
-const typed = new Typed('.carrot-stick', {
+const axios = require('axios');
+const Typed = require('typed.js');
+
+// eslint-disable-next-line no-unused-vars
+let typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
   typeSpeed: 80,
   backSpeed: 70,
@@ -38,7 +42,7 @@ const changeFace = () => {
     $angryAdd.classList.add('angry-div');
     $angryMark[0].style.display = 'block';
     $angryMark[1].style.display = 'block';
-    const typed = new Typed('.carrot-stick', {
+    typed = new Typed('.carrot-stick', {
       strings: ['Oh my god..', 'What are you doing?'],
       typeSpeed: 100,
       backSpeed: 100,
@@ -52,7 +56,7 @@ const changeFace = () => {
     $angryMark[0].style.display = 'none';
     $angryMark[1].style.display = 'none';
     $normalEye.style.display = 'block';
-    const typed = new Typed('.carrot-stick', {
+    typed = new Typed('.carrot-stick', {
       strings: ['Cheer up!', 'Please keep up the good work.'],
       typeSpeed: 100,
       backSpeed: 100,
@@ -66,7 +70,7 @@ const changeFace = () => {
     $angryMark[1].style.display = 'none';
     $happyEye.style.display = 'block';
     $happyHearts.style.display = 'block';
-    const typed = new Typed('.carrot-stick', {
+    typed = new Typed('.carrot-stick', {
       strings: ['Good job!', 'You are the best!'],
       typeSpeed: 100,
       backSpeed: 100,
@@ -171,12 +175,6 @@ $btnClose.onclick = () => {
 };
 
 $refresh.onclick = async () => {
-  try {
-    const res = await axios.get(`https://api.github.com/users/${userName}/events`);
-    console.log('git commit 새로고침 성공 : ', userName);
-    gitEvent = res.data;
-    $countNowNumber.textContent = getEvent();
-  } catch (error) {
-    console.log(error);
-  }
+  if (userName === '') return;
+  getGitHubCommit();
 };
