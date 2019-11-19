@@ -238,7 +238,7 @@ li {
   width: 20px;
   height: 20px;
   position: absolute;
-  bottom: 50px;
+  bottom: 55px;
   left: 50%;
   transform: translateX(-50%);
   animation: glow 4s infinite; }
@@ -249,6 +249,37 @@ li {
   50% {
     opacity: 0.3;
     transform: translateY(10px); } }
+
+input[type='checkbox'] {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  background-image: url('../images/uncheck.png');
+}
+
+input[type='checkbox']:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  background-image: url('../images/checked.png');
+}
+
+.btn {
+  display: inline-block;
+  opacity: 0.9;
+  border: solid 1px rgba(112, 112, 112, 0.31);
+  border-radius: 5px;
+  height: 25px;
+}
 
 /* 투두리스트-nav */
 .todolist-nav {
@@ -275,7 +306,8 @@ li {
 /* 투두리스트-하단 */
 .todolist-footer {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
 
 .complete-all {
   display: inline-block; }
