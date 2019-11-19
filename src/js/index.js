@@ -1,5 +1,10 @@
-const axios = require('axios');
+/* eslint-disable import/no-mutable-exports */
 const Typed = require('typed.js');
+const axios = require('axios');
+
+// eslint-disable-next-line import/prefer-default-export
+export let userName = '';
+let gitEvent = [];
 
 // eslint-disable-next-line no-unused-vars
 let typed = new Typed('.carrot-stick', {
@@ -8,9 +13,6 @@ let typed = new Typed('.carrot-stick', {
   backSpeed: 70,
   cursorChar: ' '
 });
-
-let gitEvent = [];
-let userName = '';
 
 // DOMs
 const $inputGithub = document.querySelector('.input-github');

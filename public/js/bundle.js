@@ -13267,21 +13267,27 @@ return /******/ (function(modules) { // webpackBootstrap
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: userName */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userName", function() { return userName; });
+/* eslint-disable import/no-mutable-exports */
 var Typed = __webpack_require__(/*! typed.js */ "./node_modules/typed.js/lib/typed.js");
+
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // eslint-disable-next-line import/prefer-default-export
+
+
+var userName = '';
+var gitEvent = []; // eslint-disable-next-line no-unused-vars
 
 var typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
   typeSpeed: 80,
   backSpeed: 70,
   cursorChar: ' '
-});
-var gitEvent = [];
-var userName = ''; // DOMs
+}); // DOMs
 
 var $inputGithub = document.querySelector('.input-github');
 var $btnOk = document.querySelector('.btn-ok');
@@ -13467,34 +13473,26 @@ $btnClose.onclick = function () {
 };
 
 $refresh.onclick = function _callee() {
-  var res;
   return regeneratorRuntime.async(function _callee$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.prev = 0;
-          _context2.next = 3;
-          return regeneratorRuntime.awrap(axios.get("https://api.github.com/users/".concat(userName, "/events")));
+          if (!(userName === '')) {
+            _context2.next = 2;
+            break;
+          }
+
+          return _context2.abrupt("return");
+
+        case 2:
+          getGitHubCommit();
 
         case 3:
-          res = _context2.sent;
-          console.log('git commit 새로고침 성공 : ', userName);
-          gitEvent = res.data;
-          $countNowNumber.textContent = getEvent();
-          _context2.next = 12;
-          break;
-
-        case 9:
-          _context2.prev = 9;
-          _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0);
-
-        case 12:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 9]]);
+  });
 };
 
 /***/ }),
@@ -13503,9 +13501,12 @@ $refresh.onclick = function _callee() {
 /*!****************************!*\
   !*** ./src/js/todoList.js ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./src/js/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -13513,6 +13514,8 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
@@ -13524,7 +13527,8 @@ var $nav = document.querySelector('.todolist-nav');
 var $clearCompleted = document.querySelector('.clear-completed > .btn');
 var $completeAll = document.querySelector('.complete-all');
 var $completedTodos = document.querySelector('.completed-todos');
-var $activeTodos = document.querySelector('.active-todos'); // 렌더
+var $activeTodos = document.querySelector('.active-todos');
+var $countGoalNumber = document.querySelector('.count-goal-number'); // 렌더
 
 var render = function render() {
   var html = '';
@@ -13540,6 +13544,7 @@ var render = function render() {
     html += "\n    <li id=\"".concat(id, "\" class=\"todo-item\">\n      <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n      <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n      <button class=\"remove-todo\">X</button>\n    </li>");
   });
 
+  html += '<div class="scroll"></div>';
   $completedTodos.textContent = todos.filter(function (todo) {
     return todo.completed;
   }).length;
@@ -13597,7 +13602,9 @@ var addTodos = function addTodos() {
           todo = {
             id: findMaxId(),
             content: $inputTodo.value,
-            completed: false
+            completed: false,
+            nickName: _index__WEBPACK_IMPORTED_MODULE_0__["userName"],
+            goalCommit: +$countGoalNumber.textContent
           };
           _context2.next = 4;
           return regeneratorRuntime.awrap(axios.post('/CommitTodos', todo));

@@ -1,3 +1,5 @@
+import { userName } from './index';
+
 const axios = require('axios');
 
 let todos = [];
@@ -10,6 +12,7 @@ const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completeAll = document.querySelector('.complete-all');
 const $completedTodos = document.querySelector('.completed-todos');
 const $activeTodos = document.querySelector('.active-todos');
+const $countGoalNumber = document.querySelector('.count-goal-number');
 
 // 렌더
 const render = () => {
@@ -48,7 +51,13 @@ const getTodos = async () => {
 
 const addTodos = async () => {
   try {
-    const todo = { id: findMaxId(), content: $inputTodo.value, completed: false };
+    const todo = {
+      id: findMaxId(),
+      content: $inputTodo.value,
+      completed: false,
+      nickName: userName,
+      goalCommit: +$countGoalNumber.textContent
+    };
     const res = await axios.post('/CommitTodos', todo);
     todos = res.data;
     render();
