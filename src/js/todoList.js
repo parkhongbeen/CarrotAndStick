@@ -1,3 +1,7 @@
+import { userName } from './index';
+
+const axios = require('axios');
+
 let todos = [];
 let navId = 'all';
 
@@ -8,6 +12,11 @@ const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completeAll = document.querySelector('.complete-all');
 const $completedTodos = document.querySelector('.completed-todos');
 const $activeTodos = document.querySelector('.active-todos');
+<<<<<<< HEAD
+const $scrollIcon = document.querySelector('.scroll-icon');
+=======
+const $countGoalNumber = document.querySelector('.count-goal-number');
+>>>>>>> 3ffc7f5573c1fc864ce3d4ccb89457468757c187
 
 // 렌더
 const render = () => {
@@ -24,10 +33,12 @@ const render = () => {
       <button class="remove-todo">X</button>
     </li>`;
   });
-
   $completedTodos.textContent = todos.filter(todo => todo.completed).length;
   $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
   $todos.innerHTML = html;
+
+  $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
+  if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
 };
 
 // 기능
@@ -46,7 +57,13 @@ const getTodos = async () => {
 
 const addTodos = async () => {
   try {
-    const todo = { id: findMaxId(), content: $inputTodo.value, completed: false };
+    const todo = {
+      id: findMaxId(),
+      content: $inputTodo.value,
+      completed: false,
+      nickName: userName,
+      goalCommit: +$countGoalNumber.textContent
+    };
     const res = await axios.post('/CommitTodos', todo);
     todos = res.data;
     render();
@@ -105,6 +122,10 @@ const changeNav = li => {
   render();
 };
 
+const scrollIconStop = scrollY => {
+  $scrollIcon.style.display = scrollY >= ($todos.children.length - 5) * 49 ? 'none' : 'block';
+};
+
 // 이벤트
 window.onload = () => {
   getTodos();
@@ -136,4 +157,8 @@ $clearCompleted.onclick = () => {
 $nav.onclick = ({ target }) => {
   if (target.classList.contains('nav')) return;
   changeNav(target);
+};
+
+$todos.onscroll = ({ target }) => {
+  scrollIconStop(target.scrollTop);
 };
