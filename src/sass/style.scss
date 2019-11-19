@@ -242,8 +242,20 @@ li{
 }
 
 .todos{
+  position: relative;
   border-top: solid 3px #313131;
   border-bottom: solid 3px #313131;
+  height: 250px;
+  overflow-y: scroll;
+}
+
+// .todos::before{
+//   content: "푸른 잔디를 위해 할 일을 입력해주세요.";
+//   height: 250px;
+// }
+
+.todos::-webkit-scrollbar{
+  background-color: transparent;
 }
 
 .todo-item{
@@ -253,6 +265,7 @@ li{
   border-bottom: 1px solid #ddd;
   border-color: #313131;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -260,6 +273,31 @@ li{
   background: none;
   border: 0;
   color: #313131;
+  margin-left: auto;
+}
+
+.scroll-icon{
+  // display: none;
+  // background-image: url('/public/images/arrow.png');
+  // background-color: red;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: glow 4s infinite;
+}
+
+@keyframes glow {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: translateY(10px);
+  }
 }
 
 /* 투두리스트-nav */
@@ -280,6 +318,12 @@ li{
 .todolist-nav > li.active {
   font-weight: 800;
   border-bottom: 2px solid #313131;
+}
+
+.empty-ment{
+  width: 100%;
+  margin-top: 120px;
+  text-align: center;
 }
 
 /* 투두리스트-하단 */

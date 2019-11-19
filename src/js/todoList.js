@@ -8,6 +8,7 @@ const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completeAll = document.querySelector('.complete-all');
 const $completedTodos = document.querySelector('.completed-todos');
 const $activeTodos = document.querySelector('.active-todos');
+const $scrollIcon = document.querySelector('.scroll-icon');
 
 // 렌더
 const render = () => {
@@ -24,10 +25,12 @@ const render = () => {
       <button class="remove-todo">X</button>
     </li>`;
   });
-
   $completedTodos.textContent = todos.filter(todo => todo.completed).length;
   $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
   $todos.innerHTML = html;
+
+  $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
+  if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
 };
 
 // 기능
@@ -105,6 +108,10 @@ const changeNav = li => {
   render();
 };
 
+const scrollIconStop = scrollY => {
+  $scrollIcon.style.display = scrollY >= ($todos.children.length - 5) * 49 ? 'none' : 'block';
+};
+
 // 이벤트
 window.onload = () => {
   getTodos();
@@ -136,4 +143,8 @@ $clearCompleted.onclick = () => {
 $nav.onclick = ({ target }) => {
   if (target.classList.contains('nav')) return;
   changeNav(target);
+};
+
+$todos.onscroll = ({ target }) => {
+  scrollIconStop(target.scrollTop);
 };
