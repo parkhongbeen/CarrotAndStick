@@ -12,11 +12,8 @@ const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completeAll = document.querySelector('.complete-all');
 const $completedTodos = document.querySelector('.completed-todos');
 const $activeTodos = document.querySelector('.active-todos');
-<<<<<<< HEAD
 const $scrollIcon = document.querySelector('.scroll-icon');
-=======
 const $countGoalNumber = document.querySelector('.count-goal-number');
->>>>>>> 3ffc7f5573c1fc864ce3d4ccb89457468757c187
 
 // 렌더
 const render = () => {

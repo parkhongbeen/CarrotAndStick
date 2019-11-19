@@ -13528,11 +13528,8 @@ var $clearCompleted = document.querySelector('.clear-completed > .btn');
 var $completeAll = document.querySelector('.complete-all');
 var $completedTodos = document.querySelector('.completed-todos');
 var $activeTodos = document.querySelector('.active-todos');
-<<<<<<< HEAD
-var $scrollIcon = document.querySelector('.scroll-icon'); // 렌더
-=======
+var $scrollIcon = document.querySelector('.scroll-icon');
 var $countGoalNumber = document.querySelector('.count-goal-number'); // 렌더
->>>>>>> 3ffc7f5573c1fc864ce3d4ccb89457468757c187
 
 var render = function render() {
   var html = '';
@@ -13548,7 +13545,6 @@ var render = function render() {
     html += "\n    <li id=\"".concat(id, "\" class=\"todo-item\">\n      <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n      <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n      <button class=\"remove-todo\">X</button>\n    </li>");
   });
 
-  html += '<div class="scroll"></div>';
   $completedTodos.textContent = todos.filter(function (todo) {
     return todo.completed;
   }).length;

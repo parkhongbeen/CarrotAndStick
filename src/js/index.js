@@ -176,13 +176,7 @@ $btnClose.onclick = () => {
   closePopup();
 };
 
-<<<<<<< HEAD
-// $refresh.onclick = () => {
-
-// };
-=======
 $refresh.onclick = async () => {
   if (userName === '') return;
   getGitHubCommit();
 };
->>>>>>> 3ffc7f5573c1fc864ce3d4ccb89457468757c187
