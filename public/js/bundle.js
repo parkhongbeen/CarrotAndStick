@@ -13285,7 +13285,7 @@ var gitEvent = []; // eslint-disable-next-line no-unused-vars
 var typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
   typeSpeed: 80,
-  backSpeed: 70,
+  backSpeed: 80,
   cursorChar: ' '
 }); // DOMs
 
@@ -13320,8 +13320,8 @@ var changeFace = function changeFace() {
     $angryMark[1].style.display = 'block';
     typed = new Typed('.carrot-stick', {
       strings: ['Oh my god..', 'What are you doing?'],
-      typeSpeed: 100,
-      backSpeed: 100,
+      typeSpeed: 80,
+      backSpeed: 50,
       cursorChar: ' '
     });
   } else if (currentGitNumber >= goalGitNumber / 2 && currentGitNumber < goalGitNumber) {
@@ -13334,8 +13334,8 @@ var changeFace = function changeFace() {
     $normalEye.style.display = 'block';
     typed = new Typed('.carrot-stick', {
       strings: ['Cheer up!', 'Please keep up the good work.'],
-      typeSpeed: 100,
-      backSpeed: 100,
+      typeSpeed: 80,
+      backSpeed: 50,
       cursorChar: ' '
     });
   } else if (currentGitNumber >= goalGitNumber) {
@@ -13348,8 +13348,8 @@ var changeFace = function changeFace() {
     $happyHearts.style.display = 'block';
     typed = new Typed('.carrot-stick', {
       strings: ['Good job!', 'You are the best!'],
-      typeSpeed: 100,
-      backSpeed: 100,
+      typeSpeed: 80,
+      backSpeed: 50,
       cursorChar: ' '
     });
   }
@@ -13528,7 +13528,11 @@ var $clearCompleted = document.querySelector('.clear-completed > .btn');
 var $completeAll = document.querySelector('.complete-all');
 var $completedTodos = document.querySelector('.completed-todos');
 var $activeTodos = document.querySelector('.active-todos');
+<<<<<<< HEAD
+var $scrollIcon = document.querySelector('.scroll-icon'); // 렌더
+=======
 var $countGoalNumber = document.querySelector('.count-goal-number'); // 렌더
+>>>>>>> 3ffc7f5573c1fc864ce3d4ccb89457468757c187
 
 var render = function render() {
   var html = '';
@@ -13552,6 +13556,8 @@ var render = function render() {
     return !todo.completed;
   }).length;
   $todos.innerHTML = html;
+  $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
+  if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
 }; // 기능
 
 
@@ -13766,6 +13772,10 @@ var changeNav = function changeNav(li) {
 
   navId = li.id;
   render();
+};
+
+var scrollIconStop = function scrollIconStop(scrollY) {
+  $scrollIcon.style.display = scrollY >= ($todos.children.length - 5) * 49 ? 'none' : 'block';
 }; // 이벤트
 
 
@@ -13805,6 +13815,11 @@ $nav.onclick = function (_ref6) {
   var target = _ref6.target;
   if (target.classList.contains('nav')) return;
   changeNav(target);
+};
+
+$todos.onscroll = function (_ref7) {
+  var target = _ref7.target;
+  scrollIconStop(target.scrollTop);
 };
 
 /***/ }),
