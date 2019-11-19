@@ -1,7 +1,7 @@
 const typed = new Typed('.carrot-stick', {
   strings: ['Welcome!', 'Enter your GITHUB Nickname!'],
-  typeSpeed: 100,
-  backSpeed: 100,
+  typeSpeed: 80,
+  backSpeed: 70,
   cursorChar: ' '
 });
 
@@ -37,6 +37,12 @@ const changeFace = () => {
     $angryAdd.classList.add('angry-div');
     $angryMark[0].style.display = 'block';
     $angryMark[1].style.display = 'block';
+    const typed = new Typed('.carrot-stick', {
+      strings: ['Oh my god..', 'What are you doing?'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      cursorChar: ' '
+    });
   } else if (currentGitNumber >= goalGitNumber / 2 && currentGitNumber < goalGitNumber) {
     // 무표정
     $happyEye.style.display = 'none';
@@ -45,6 +51,12 @@ const changeFace = () => {
     $angryMark[0].style.display = 'none';
     $angryMark[1].style.display = 'none';
     $normalEye.style.display = 'block';
+    const typed = new Typed('.carrot-stick', {
+      strings: ['Cheer up!', 'Please keep up the good work.'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      cursorChar: ' '
+    });
   } else if (currentGitNumber >= goalGitNumber) {
     // 즐거움
     $angryEye.style.display = 'none';
@@ -53,6 +65,12 @@ const changeFace = () => {
     $angryMark[1].style.display = 'none';
     $happyEye.style.display = 'block';
     $happyHearts.style.display = 'block';
+    const typed = new Typed('.carrot-stick', {
+      strings: ['Good job!', 'You are the best!'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      cursorChar: ' '
+    });
   }
 };
 
@@ -69,7 +87,7 @@ const closePopup = () => {
   $inputGithub.focus();
   $inputGithub.classList.remove('input-github-sucess');
   $inputGithub.classList.remove('input-github-error');
-  $inputGithub.placeholder = 'Enter your GITHUB URL!';
+  $inputGithub.placeholder = 'Enter your GITHUB Nickname!';
 };
 
 const saveForcommit = () => {
