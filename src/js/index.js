@@ -1,5 +1,8 @@
+import counterUp from 'counterup2';
 // eslint-disable-next-line import/no-cycle
 import getTodos from './todoList';
+
+const $countUp = document.querySelector('.counter');
 
 /* eslint-disable import/no-mutable-exports */
 const Typed = require('typed.js');
@@ -175,6 +178,10 @@ $inputCommit.onkeyup = ({ keyCode }) => {
   if (keyCode !== 13) return;
   saveForcommit();
   getTodos();
+  counterUp($countUp, {
+    duration: 1000,
+    delay: 16
+  });
 };
 
 $btnClose.onclick = () => {
