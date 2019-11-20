@@ -12,7 +12,7 @@ body {
   background-color: #eba33f;
   position: relative;
   background-position-y: -200px;
-  background-image: url(../images/moominbg.jpg); }
+  background-image: url('../images/moominbg.jpg'); }
 
 ul {
   padding-left: 0; }
@@ -230,6 +230,12 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center; }
+
+.remove-todo {
+  cursor: pointer; }
+
+.remove-todo:hover {
+  color: red; }
 
 .scroll-icon {
   width: 20px;
