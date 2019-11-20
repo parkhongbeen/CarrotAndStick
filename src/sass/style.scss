@@ -1,5 +1,5 @@
-@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 @charset "utf-8";
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
 *, *::before, *::after{
   box-sizing: border-box;
@@ -273,6 +273,10 @@ li{
 
 .remove-todo{
   cursor: pointer;
+}
+
+.remove-todo:hover{
+  color: red;
 }
 
 .scroll-icon{
