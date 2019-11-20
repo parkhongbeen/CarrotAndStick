@@ -13540,7 +13540,7 @@ var $countGoalNumber = document.querySelector('.count-goal-number'); // 렌더
 var render = function render() {
   if (!_index__WEBPACK_IMPORTED_MODULE_0__["userName"]) {
     $scrollIcon.style.display = 'none';
-    $todos.innerHTML = '<div class="empty-ment">로그인부터 해주세요.</div>';
+    $todos.innerHTML = '<div class="empty-ment">닉네임 입력 후 사용 가능합니다.</div>';
   } else {
     var html = '';
 

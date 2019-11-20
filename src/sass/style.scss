@@ -35,17 +35,19 @@ li{
 /* 헤더 */
 .header{
   display: flex;
-  margin-bottom: 50px;
 }
 
 .header-heading{
   margin: auto 0;
   padding: 0;
   color: #313131;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .input-github {
-  width: 750px;
+  width: 610px;
   height: 50px;
   opacity: 0.8;
   border-radius: 6px;
@@ -193,7 +195,7 @@ li{
   font-size: 50px;
   text-align: right;
   margin-top: 20px;
-  color: rgba(235, 163, 63, 0.8);
+  color: #313131;
 }
 
 .count-goal-number::before{
@@ -798,3 +800,40 @@ input[type='checkbox']:checked{
   }
 }
 
+.header-svg-wrapper {
+  transform: translateX(-5px) translateY(-28px);
+  width: 36%;
+}
+
+.header-svg-wrapper path {
+  stroke: rgba(9, 105, 223, 0.8);
+  fill: rgba(9, 105, 223, 0.8);
+  stroke-dasharray: 1800;
+  opacity: 10;
+  stroke-width: 2;
+  animation: animate 3s cubic-bezier(1,0.2,1,.1);
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    fill: none;
+    stroke-dashoffset: 1800;
+  }
+
+  30% {
+    opacity: 10;
+    fill: none;
+    stroke-dashoffset: 1800;
+  }
+
+  90% {
+    fill: rgba(9, 105, 223, 0);
+  }
+
+  100% {
+    opacity: 10;
+    fill: rgb(9, 105, 223);
+    stroke-dashoffset: 0;
+  }
+}
