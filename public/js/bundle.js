@@ -13556,7 +13556,7 @@ var render = function render() {
       var id = _ref.id,
           content = _ref.content,
           completed = _ref.completed;
-      html += "\n      <li id=\"".concat(id, "\" class=\"todo-item\">\n        <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n        <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n        <button class=\"remove-todo\">X</button>\n      </li>");
+      html += "\n      <li id=\"".concat(id, "\" class=\"todo-item\">\n        <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n        <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n        <i class=\"remove-todo far fa-trash-alt\"></i>\n      </li>");
     });
 
     $completedTodos.textContent = _todos.filter(function (todo) {

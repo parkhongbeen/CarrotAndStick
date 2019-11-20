@@ -33,7 +33,7 @@ const render = () => {
       <li id="${id}" class="todo-item">
         <input class="checkbox" type="checkbox" id="ck-${id}" ${completed ? 'checked' : ''}>
         <label for="ck-${id}">${content}</label>
-        <button class="remove-todo">X</button>
+        <i class="remove-todo far fa-trash-alt"></i>
       </li>`;
     });
     $completedTodos.textContent = _todos.filter(todo => todo.completed).length;
