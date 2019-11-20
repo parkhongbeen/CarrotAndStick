@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import getTodos from './todoList';
+
 /* eslint-disable import/no-mutable-exports */
 const Typed = require('typed.js');
 const axios = require('axios');
@@ -165,11 +168,13 @@ $inputGithub.onkeyup = ({ keyCode }) => {
 
 $btnOk.onclick = () => {
   saveForcommit();
+  getTodos();
 };
 
 $inputCommit.onkeyup = ({ keyCode }) => {
   if (keyCode !== 13) return;
   saveForcommit();
+  getTodos();
 };
 
 $btnClose.onclick = () => {
