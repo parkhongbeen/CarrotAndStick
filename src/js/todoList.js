@@ -17,25 +17,30 @@ const $countGoalNumber = document.querySelector('.count-goal-number');
 
 // 렌더
 const render = () => {
-  let html = '';
+  if (!userName) {
+    $scrollIcon.style.display = 'none';
+    $todos.innerHTML = '<div class="empty-ment">로그인부터 해주세요.</div>';
+  } else {
+    let html = '';
 
-  const _todos = todos.filter(todo => (
-    navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed
-  ));
-  _todos.forEach(({ id, content, completed }) => {
-    html += `
-    <li id="${id}" class="todo-item">
-      <input class="checkbox" type="checkbox" id="ck-${id}" ${completed ? 'checked' : ''}>
-      <label for="ck-${id}">${content}</label>
-      <button class="remove-todo">X</button>
-    </li>`;
-  });
-  $completedTodos.textContent = todos.filter(todo => todo.completed).length;
-  $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
-  $todos.innerHTML = html;
+    const _todos = todos.filter(todo => (
+      navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed
+    ));
+    _todos.forEach(({ id, content, completed }) => {
+      html += `
+      <li id="${id}" class="todo-item">
+        <input class="checkbox" type="checkbox" id="ck-${id}" ${completed ? 'checked' : ''}>
+        <label for="ck-${id}">${content}</label>
+        <button class="remove-todo">X</button>
+      </li>`;
+    });
+    $completedTodos.textContent = todos.filter(todo => todo.completed).length;
+    $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
+    $todos.innerHTML = html;
 
-  $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
-  if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
+    $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
+    if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
+  }
 };
 
 // 기능
@@ -159,3 +164,17 @@ $nav.onclick = ({ target }) => {
 $todos.onscroll = ({ target }) => {
   scrollIconStop(target.scrollTop);
 };
+
+
+// $btnOk.onclick = () => {
+//   console.log('todoList Event');
+//   getTodos();
+// };
+
+// $inputCommit.onkeyup = ({ keyCode }) => {
+//   if (keyCode !== 13) return;
+//   console.log('todoList Event');
+//   getTodos();
+// };
+
+export default getTodos;

@@ -13273,7 +13273,11 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userName", function() { return userName; });
+/* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoList */ "./src/js/todoList.js");
+// eslint-disable-next-line import/no-cycle
+
 /* eslint-disable import/no-mutable-exports */
+
 var Typed = __webpack_require__(/*! typed.js */ "./node_modules/typed.js/lib/typed.js");
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // eslint-disable-next-line import/prefer-default-export
@@ -13460,12 +13464,14 @@ $inputGithub.onkeyup = function (_ref) {
 
 $btnOk.onclick = function () {
   saveForcommit();
+  Object(_todoList__WEBPACK_IMPORTED_MODULE_0__["default"])();
 };
 
 $inputCommit.onkeyup = function (_ref2) {
   var keyCode = _ref2.keyCode;
   if (keyCode !== 13) return;
   saveForcommit();
+  Object(_todoList__WEBPACK_IMPORTED_MODULE_0__["default"])();
 };
 
 $btnClose.onclick = function () {
@@ -13501,7 +13507,7 @@ $refresh.onclick = function _callee() {
 /*!****************************!*\
   !*** ./src/js/todoList.js ***!
   \****************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13532,28 +13538,33 @@ var $scrollIcon = document.querySelector('.scroll-icon');
 var $countGoalNumber = document.querySelector('.count-goal-number'); // 렌더
 
 var render = function render() {
-  var html = '';
+  if (!_index__WEBPACK_IMPORTED_MODULE_0__["userName"]) {
+    $scrollIcon.style.display = 'none';
+    $todos.innerHTML = '<div class="empty-ment">로그인부터 해주세요.</div>';
+  } else {
+    var html = '';
 
-  var _todos = todos.filter(function (todo) {
-    return navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed;
-  });
+    var _todos = todos.filter(function (todo) {
+      return navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed;
+    });
 
-  _todos.forEach(function (_ref) {
-    var id = _ref.id,
-        content = _ref.content,
-        completed = _ref.completed;
-    html += "\n    <li id=\"".concat(id, "\" class=\"todo-item\">\n      <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n      <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n      <button class=\"remove-todo\">X</button>\n    </li>");
-  });
+    _todos.forEach(function (_ref) {
+      var id = _ref.id,
+          content = _ref.content,
+          completed = _ref.completed;
+      html += "\n      <li id=\"".concat(id, "\" class=\"todo-item\">\n        <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n        <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n        <button class=\"remove-todo\">X</button>\n      </li>");
+    });
 
-  $completedTodos.textContent = todos.filter(function (todo) {
-    return todo.completed;
-  }).length;
-  $activeTodos.textContent = todos.filter(function (todo) {
-    return !todo.completed;
-  }).length;
-  $todos.innerHTML = html;
-  $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
-  if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
+    $completedTodos.textContent = todos.filter(function (todo) {
+      return todo.completed;
+    }).length;
+    $activeTodos.textContent = todos.filter(function (todo) {
+      return !todo.completed;
+    }).length;
+    $todos.innerHTML = html;
+    $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
+    if (!$todos.children.length) $todos.innerHTML = '<div class="empty-ment">오늘은 무엇으로 잔디를 채울 예정인가요?</div>';
+  }
 }; // 기능
 
 
@@ -13816,7 +13827,18 @@ $nav.onclick = function (_ref6) {
 $todos.onscroll = function (_ref7) {
   var target = _ref7.target;
   scrollIconStop(target.scrollTop);
-};
+}; // $btnOk.onclick = () => {
+//   console.log('todoList Event');
+//   getTodos();
+// };
+// $inputCommit.onkeyup = ({ keyCode }) => {
+//   if (keyCode !== 13) return;
+//   console.log('todoList Event');
+//   getTodos();
+// };
+
+
+/* harmony default export */ __webpack_exports__["default"] = (getTodos);
 
 /***/ }),
 
