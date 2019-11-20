@@ -23,9 +23,11 @@ const render = () => {
   } else {
     let html = '';
 
-    const _todos = todos.filter(todo => (
+    let _todos = todos.filter(todo => (
       navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed
     ));
+    _todos = _todos.filter(todo => todo.nickName === userName);
+
     _todos.forEach(({ id, content, completed }) => {
       html += `
       <li id="${id}" class="todo-item">
@@ -50,6 +52,7 @@ const findMaxId = () => Math.max(0, ...todos.map(todo => todo.id)) + 1;
 const getTodos = async () => {
   try {
     const res = await axios.get('/CommitTodos');
+    console.log(res);
     todos = res.data;
     render();
   } catch (error) {
@@ -131,7 +134,6 @@ const scrollIconStop = scrollY => {
 // 이벤트
 window.onload = () => {
   getTodos();
-  console.log('async');
 };
 
 $inputTodo.onkeyup = ({ target, keyCode }) => {

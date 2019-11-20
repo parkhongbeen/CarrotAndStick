@@ -132,7 +132,6 @@ const getEvent = () => {
   return todayCommitCount;
 };
 
-
 // git API 불러오기.
 const getGitHubCommit = async () => {
   try {
