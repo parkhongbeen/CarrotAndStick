@@ -1,5 +1,5 @@
-@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 @charset "utf-8";
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
 *, *::before, *::after{
   box-sizing: border-box;
@@ -148,6 +148,15 @@ li{
   justify-content: space-between;
   width: 500px;
   margin-bottom: 50px;
+  position: relative;
+}
+
+.commit-time{
+  display: block;
+  position: absolute;
+  top: -20px;
+  color: #313131;
+  font-weight: 600;
 }
 
 .commit-count-heading{

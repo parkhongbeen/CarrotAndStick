@@ -13302,6 +13302,7 @@ var $inputCommit = document.querySelector('.popup-daily-commit');
 var $countNowNumber = document.querySelector('.count-now-number');
 var $countGoalNumber = document.querySelector('.count-goal-number');
 var $refresh = document.querySelector('.refresh');
+var $commitTime = document.querySelector('.commit-time');
 
 var changeFace = function changeFace() {
   // 표정 관련
@@ -13399,6 +13400,7 @@ var saveForcommit = function saveForcommit() {
 var getEvent = function getEvent() {
   var todayCommitCount = 0;
   var date = '';
+  $commitTime.innerHTML = "".concat(new Date().getHours(), "\uC2DC ").concat(new Date().getMonth(), "\uBD84");
   gitEvent.forEach(function (eventList) {
     date = new Date(eventList.created_at).toDateString();
     if (date !== new Date().toDateString()) return;
