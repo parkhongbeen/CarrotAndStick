@@ -1,3 +1,4 @@
+@import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
 @charset "UTF-8";
 *, *::before, *::after {
   box-sizing: border-box; }
@@ -8,8 +9,10 @@ html {
 body {
   margin: 0;
   font-weight: 200;
-  background-color: #c9d99e;
-  position: relative; }
+  background-color: #eba33f;
+  position: relative;
+  background-position-y: -200px;
+  background-image: url(../images/moominbg.jpg); }
 
 ul {
   padding-left: 0; }
@@ -17,41 +20,33 @@ ul {
 li {
   list-style-type: none; }
 
-/* .clearfix{
-  content: "";
-  display: block;
-  clear: both;
-} */
 .container {
   width: 1200px;
-  margin: 0 auto;
+  margin: 3vh auto;
   padding: 30px 80px;
-  /* box-shadow: 0px 5px 10px #aaa; */ }
+  background-color: rgba(241, 241, 241, 0.7); }
 
 /* 헤더 */
 .header {
-  /* background-color: skyblue; */
-  display: flex;
-  margin-bottom: 50px; }
+  display: flex; }
 
 .header-heading {
   margin: auto 0;
   padding: 0;
-  color: #313131; }
+  color: #313131;
+  width: 1px;
+  height: 1px;
+  overflow: hidden; }
 
 .input-github {
-  width: 750px;
+  width: 610px;
   height: 50px;
   opacity: 0.8;
   border-radius: 6px;
-  border: solid 3px rgba(112, 112, 112, 0.31);
+  border: solid 3px rgba(235, 163, 63, 0.8);
   margin: 0 auto;
   padding-left: 20px;
-  font-size: inherit;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
-
-.input-github:focus {
-  /* 추가하자 */ }
+  font-size: inherit; }
 
 /* 커밋입력 팝업 */
 .popup {
@@ -69,11 +64,11 @@ li {
 
 .overlay {
   background-color: #313131;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 500%;
+  height: 100%;
   opacity: 0.3;
   z-index: 5;
   display: none; }
@@ -125,7 +120,6 @@ li {
 
 /* 커밋, 투두리스트 */
 .commit-todolist {
-  /* display: inline-block; */
   float: left;
   margin-top: 30px; }
 
@@ -175,13 +169,16 @@ li {
 .count-number {
   font-size: 50px;
   text-align: right;
-  margin-top: 20px; }
+  margin-top: 20px;
+  color: #313131; }
 
 .count-goal-number::before {
   content: "/";
   display: inline-block;
   width: 3px;
-  padding-right: 30px; }
+  padding-right: 30px;
+  color: #313131;
+  font-weight: 600; }
 
 /* 투두리스트 */
 .todolist {
@@ -203,7 +200,7 @@ li {
   height: 50px;
   opacity: 0.8;
   border-radius: 6px;
-  border: solid 1px rgba(112, 112, 112, 0.31);
+  border: solid 1px rgba(235, 163, 63, 0.5);
   margin: 0 auto;
   padding-left: 20px;
   font-size: inherit; }
@@ -218,6 +215,12 @@ li {
 .todos::-webkit-scrollbar {
   background-color: transparent; }
 
+.todos > li > label {
+  width: 400px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
 .todo-item {
   height: 50px;
   padding: 10px 15px;
@@ -229,16 +232,16 @@ li {
   align-items: center; }
 
 .remove-todo {
-  background: none;
-  border: 0;
-  color: #313131;
-  margin-left: auto; }
+  cursor: pointer; }
+
+.remove-todo:hover {
+  color: red; }
 
 .scroll-icon {
   width: 20px;
   height: 20px;
   position: absolute;
-  bottom: 50px;
+  bottom: 55px;
   left: 50%;
   transform: translateX(-50%);
   animation: glow 4s infinite; }
@@ -249,6 +252,34 @@ li {
   50% {
     opacity: 0.3;
     transform: translateY(10px); } }
+
+input[type='checkbox'] {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  background-image: url(../images/uncheck.png); }
+
+input[type='checkbox']:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  background-image: url(../images/checked.png); }
+
+.btn {
+  display: inline-block;
+  opacity: 0.9;
+  border: solid 1px rgba(112, 112, 112, 0.31);
+  border-radius: 5px;
+  height: 25px; }
 
 /* 투두리스트-nav */
 .todolist-nav {
@@ -275,7 +306,8 @@ li {
 /* 투두리스트-하단 */
 .todolist-footer {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
 
 .complete-all {
   display: inline-block; }
@@ -297,6 +329,7 @@ li {
 .carrot-stick {
   font-size: 30px;
   font-style: normal;
+  font-weight: 800;
   color: #313131;
   display: block;
   text-align: center;
@@ -333,7 +366,8 @@ li {
   background: #fff;
   margin-bottom: 40px;
   align-self: center;
-  transform-style: preserve-3d; }
+  transform-style: preserve-3d;
+  border: 3px solid rgba(235, 163, 63, 0.8); }
 
 @keyframes blink {
   0%, 100% {
@@ -693,6 +727,34 @@ li {
     background-position: 0 0; }
   100% {
     background-position: -2800px 0; } }
+
+.header-svg-wrapper {
+  transform: translateX(-5px) translateY(-28px);
+  width: 36%; }
+
+.header-svg-wrapper path {
+  stroke: rgba(9, 105, 223, 0.8);
+  fill: rgba(9, 105, 223, 0.8);
+  stroke-dasharray: 1800;
+  opacity: 10;
+  stroke-width: 2;
+  animation: animate 3s cubic-bezier(1, 0.2, 1, 0.1); }
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    fill: none;
+    stroke-dashoffset: 1800; }
+  30% {
+    opacity: 10;
+    fill: none;
+    stroke-dashoffset: 1800; }
+  90% {
+    fill: rgba(9, 105, 223, 0); }
+  100% {
+    opacity: 10;
+    fill: #0969df;
+    stroke-dashoffset: 0; } }
 
 
 /*# sourceMappingURL=style.css.map*/

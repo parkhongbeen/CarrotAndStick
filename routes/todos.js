@@ -5,6 +5,7 @@ const Todo = require('../models/todo');
 router.get('/', (req, res) => {
   Todo.findAll()
     .then(todos => res.send(todos))
+    .then(todos => console.log(todos))
     .catch(err => res.status(500).send(err));
 });
 

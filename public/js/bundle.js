@@ -13564,7 +13564,7 @@ var $countGoalNumber = document.querySelector('.count-goal-number'); // 렌더
 var render = function render() {
   if (!_index__WEBPACK_IMPORTED_MODULE_0__["userName"]) {
     $scrollIcon.style.display = 'none';
-    $todos.innerHTML = '<div class="empty-ment">로그인부터 해주세요.</div>';
+    $todos.innerHTML = '<div class="empty-ment">닉네임 입력 후 사용 가능합니다.</div>';
   } else {
     var html = '';
 
@@ -13572,17 +13572,21 @@ var render = function render() {
       return navId === 'all' ? true : navId === 'active' ? !todo.completed : todo.completed;
     });
 
+    _todos = _todos.filter(function (todo) {
+      return todo.nickName === _index__WEBPACK_IMPORTED_MODULE_0__["userName"];
+    });
+
     _todos.forEach(function (_ref) {
       var id = _ref.id,
           content = _ref.content,
           completed = _ref.completed;
-      html += "\n      <li id=\"".concat(id, "\" class=\"todo-item\">\n        <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n        <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n        <button class=\"remove-todo\">X</button>\n      </li>");
+      html += "\n      <li id=\"".concat(id, "\" class=\"todo-item\">\n        <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n        <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n        <i class=\"remove-todo far fa-trash-alt\"></i>\n      </li>");
     });
 
-    $completedTodos.textContent = todos.filter(function (todo) {
+    $completedTodos.textContent = _todos.filter(function (todo) {
       return todo.completed;
     }).length;
-    $activeTodos.textContent = todos.filter(function (todo) {
+    $activeTodos.textContent = _todos.filter(function (todo) {
       return !todo.completed;
     }).length;
     $todos.innerHTML = html;
@@ -13611,22 +13615,23 @@ var getTodos = function getTodos() {
 
         case 3:
           res = _context.sent;
+          console.log(res);
           todos = res.data;
           render();
-          _context.next = 11;
+          _context.next = 12;
           break;
 
-        case 8:
-          _context.prev = 8;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](0);
           console.error(_context.t0);
 
-        case 11:
+        case 12:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 9]]);
 };
 
 var addTodos = function addTodos() {
@@ -13812,7 +13817,6 @@ var scrollIconStop = function scrollIconStop(scrollY) {
 
 window.onload = function () {
   getTodos();
-  console.log('async');
 };
 
 $inputTodo.onkeyup = function (_ref2) {

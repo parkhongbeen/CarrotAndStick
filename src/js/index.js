@@ -135,7 +135,6 @@ const getEvent = () => {
   return todayCommitCount;
 };
 
-
 // git API 불러오기.
 const getGitHubCommit = async () => {
   try {
@@ -165,6 +164,10 @@ $inputGithub.onkeyup = ({ keyCode }) => {
     userName = $inputGithub.value;
     getGitHubCommit();
     openPopup();
+    counterUp($countUp, {
+      duration: 1000,
+      delay: 16
+    });
   }
   $inputGithub.value = '';
 };

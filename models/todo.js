@@ -21,7 +21,7 @@ todoSchema.statics.create = function (payload) {
 // Find All
 todoSchema.statics.findAll = function () {
   return this.find({}, {
-    _id: false, id: true, content: true, completed: true
+    _id: false, id: true, content: true, completed: true, nickName: true, goalCommit: true
   }).sort({ id: 'desc' });
 };
 
