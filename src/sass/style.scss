@@ -1,3 +1,4 @@
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 @charset "utf-8";
 
 *, *::before, *::after{
@@ -271,10 +272,7 @@ li{
 }
 
 .remove-todo{
-  background: none;
-  border: 0;
-  color: #313131;
-  margin-left: auto;
+  cursor: pointer;
 }
 
 .scroll-icon{
