@@ -11,8 +11,10 @@ html{
 body{
   margin: 0;
   font-weight: 200;
-  background-color: #c9d99e;
+  background-color: rgb(235, 163, 63);
   position: relative;
+  // background-image: url('/public/images/moominbg.jpg');
+  background-position-y: -200px;
 }
 
 ul{
@@ -23,22 +25,15 @@ li{
   list-style-type: none;
 }
 
-/* .clearfix{
-  content: "";
-  display: block;
-  clear: both;
-} */
-
 .container{
   width: 1200px;
   margin: 0 auto;
   padding: 30px 80px;
-  /* box-shadow: 0px 5px 10px #aaa; */
+  background-color: rgba(241, 241, 241, 0.7);
 }
 
 /* 헤더 */
 .header{
-  /* background-color: skyblue; */
   display: flex;
   margin-bottom: 50px;
 }
@@ -54,15 +49,10 @@ li{
   height: 50px;
   opacity: 0.8;
   border-radius: 6px;
-  border: solid 3px rgba(112, 112, 112, 0.31);
+  border: solid 3px rgba(235, 163, 63, 0.8);
   margin: 0 auto;
   padding-left: 20px;
   font-size: inherit;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
-
-.input-github:focus{
-  /* 추가하자 */
 }
 
 /* 커밋입력 팝업 */
@@ -145,7 +135,6 @@ li{
 
 /* 커밋, 투두리스트 */
 .commit-todolist{
-  /* display: inline-block; */
   float: left;
   margin-top: 30px;
 }
@@ -203,7 +192,8 @@ li{
 .count-number{
   font-size: 50px;
   text-align: right;
-  margin-top: 20px
+  margin-top: 20px;
+  color: rgba(235, 163, 63, 0.8);
 }
 
 .count-goal-number::before{
@@ -211,6 +201,8 @@ li{
   display: inline-block;
   width: 3px;
   padding-right: 30px;
+  color: #313131;
+  font-weight: 600;
 }
 
 /* 투두리스트 */
@@ -235,7 +227,7 @@ li{
   height: 50px;
   opacity: 0.8;
   border-radius: 6px;
-  border: solid 1px rgba(112, 112, 112, 0.31);
+  border: solid 1px rgba(235, 163, 63, 0.5);
   margin: 0 auto;
   padding-left: 20px;
   font-size: inherit;
@@ -256,6 +248,13 @@ li{
 
 .todos::-webkit-scrollbar{
   background-color: transparent;
+}
+
+.todos > li > label{
+  width: 400px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .todo-item{
@@ -387,6 +386,7 @@ input[type='checkbox']:checked{
 .carrot-stick{
   font-size: 30px;
   font-style: normal;
+  font-weight: 800;
   color: #313131;
   display: block;
   text-align: center;
@@ -423,6 +423,7 @@ input[type='checkbox']:checked{
   margin-bottom: 40px;
   align-self: center;
   transform-style: preserve-3d;
+  border: 3px solid rgba(235, 163, 63, 0.8);
 }
 
 @keyframes blink {
