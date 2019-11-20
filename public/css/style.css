@@ -11,8 +11,7 @@ body {
   font-weight: 200;
   background-color: #eba33f;
   position: relative;
-  background-position-y: -200px;
-  background-image: url(../images/moominbg.jpg); }
+  background-position-y: -200px; }
 
 ul {
   padding-left: 0; }
@@ -128,7 +127,15 @@ li {
   display: flex;
   justify-content: space-between;
   width: 500px;
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  position: relative; }
+
+.commit-time {
+  display: block;
+  position: absolute;
+  top: -20px;
+  color: #313131;
+  font-weight: 600; }
 
 .commit-count-heading {
   width: 1px;
@@ -263,16 +270,14 @@ input[type='checkbox'] {
   -o-appearance: none;
   appearance: none;
   outline: none;
-  box-shadow: none;
-  background-image: url(../images/uncheck.png); }
+  box-shadow: none; }
 
 input[type='checkbox']:checked {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
   appearance: none;
-  box-shadow: none;
-  background-image: url(../images/checked.png); }
+  box-shadow: none; }
 
 .btn {
   display: inline-block;

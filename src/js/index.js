@@ -30,6 +30,7 @@ const $inputCommit = document.querySelector('.popup-daily-commit');
 const $countNowNumber = document.querySelector('.count-now-number');
 const $countGoalNumber = document.querySelector('.count-goal-number');
 const $refresh = document.querySelector('.refresh');
+const $commitTime = document.querySelector('.commit-time');
 
 const changeFace = () => {
   // 표정 관련
@@ -126,6 +127,8 @@ const saveForcommit = () => {
 const getEvent = () => {
   let todayCommitCount = 0;
   let date = '';
+
+  $commitTime.innerHTML = `${new Date().getHours()}시 ${new Date().getMonth()}분`;
 
   gitEvent.forEach(eventList => {
     date = new Date(eventList.created_at).toDateString();
