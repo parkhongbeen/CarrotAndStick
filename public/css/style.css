@@ -10,8 +10,9 @@ body {
   font-weight: 200;
   background-color: #eba33f;
   position: relative;
+  background-position-y: -200px;
   background-image: url('../images/moominbg.jpg');
-  background-position-y: -200px; }
+}
 
 ul {
   padding-left: 0; }

@@ -13559,10 +13559,10 @@ var render = function render() {
       html += "\n      <li id=\"".concat(id, "\" class=\"todo-item\">\n        <input class=\"checkbox\" type=\"checkbox\" id=\"ck-").concat(id, "\" ").concat(completed ? 'checked' : '', ">\n        <label for=\"ck-").concat(id, "\">").concat(content, "</label>\n        <button class=\"remove-todo\">X</button>\n      </li>");
     });
 
-    $completedTodos.textContent = todos.filter(function (todo) {
+    $completedTodos.textContent = _todos.filter(function (todo) {
       return todo.completed;
     }).length;
-    $activeTodos.textContent = todos.filter(function (todo) {
+    $activeTodos.textContent = _todos.filter(function (todo) {
       return !todo.completed;
     }).length;
     $todos.innerHTML = html;

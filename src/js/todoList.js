@@ -36,8 +36,8 @@ const render = () => {
         <button class="remove-todo">X</button>
       </li>`;
     });
-    $completedTodos.textContent = todos.filter(todo => todo.completed).length;
-    $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
+    $completedTodos.textContent = _todos.filter(todo => todo.completed).length;
+    $activeTodos.textContent = _todos.filter(todo => !todo.completed).length;
     $todos.innerHTML = html;
 
     $scrollIcon.style.display = $todos.children.length > 5 ? 'block' : 'none';
